@@ -1,0 +1,54 @@
+@namespace(uri="http://DashboardAdmin", prefix="")
+package dashboard;    
+  
+class Project {
+  id attr String name;
+  attr String author;
+  attr String copyrights;
+  attr String packageName;
+  val Schema[*] schemas;
+  val Dashboard dashboard;
+  val Enum[*] enums;
+}
+
+class Dashboard {
+  attr String mongoUrl;
+  ref Schema[*] schemas;
+}
+
+abstract class Named {
+  id attr String name;
+  attr String collectionName;
+}
+
+class Schema extends Named {
+  attr Boolean containsRichContent = false;
+  attr Boolean containsImage = false;
+  val Attr[*] attrs;
+  val ObjectAttr[*] linkedSchemas;
+}
+
+class Enum extends Named {
+  attr String values;
+}
+
+class Attr extends Named {
+  attr String type;
+  ref Enum enumType;
+  attr Boolean required = false;
+  attr Boolean index = false;
+  attr Boolean ~unique = false;
+  attr Boolean array = false;
+  attr Boolean richContent = false;
+}
+
+class ObjectAttr extends Named {
+  ref Schema schema;
+  attr Boolean object = false;
+  attr Boolean objectArray = false;
+  attr Boolean objectLink = false;
+  attr Boolean objectLinkArray = false;
+  attr Boolean required = false;
+  attr Boolean index = false;
+  attr Boolean ~unique = false;
+}

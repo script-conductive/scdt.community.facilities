@@ -1,0 +1,63 @@
+package [%=packageName%].resources;
+
+import org.bson.types.ObjectId;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="[%=schema.collectionName%]")
+public class [%=schema.name%] {
+  @Id
+  private String id;
+  public String getId() { return this.id; }
+  public void setId(String id) { this.id = id; }
+
+  [% for (attr in schema.attrs.select(o|o.name <> "id")) { %]
+  [%
+    var type: String = "";
+    if (attr.type = "String") { type = "String"; }
+    if (attr.type = "Number") { type = "double"; }
+    if (attr.type = "Boolean") { type = "boolean"; }
+    if (attr.type = "Date") { type = "java.util.Date"; }
+    if (attr.enumType <> null) { type = "String"; }
+  %]
+  [% if (attr.array = false) {%]
+  private [%=type%] [%=attr.name%];
+  public [%=type%] get[%=attr.name.firstToUpperCase()%]() { return this.[%=attr.name%]; }
+  public void set[%=attr.name.firstToUpperCase()%]([%=type%] [%=attr.name%]) { this.[%=attr.name%] = [%=attr.name%]; }
+
+  [% } %]
+  [% if (attr.array = true) {%]
+  private [%=type%] [%=attr.name%]List; 
+  public java.util.List<[%=type%]> get[%=attr.name.firstToUpperCase()%]() { return this.[%=attr.name%]List; }
+  public void set[%=attr.name.firstToUpperCase()%]List(java.util.List <[%=type%]> [%=attr.name%]List) { this.[%=attr.name%]List = [%=attr.name%]List; }
+
+  [% } %]
+  [% } %]
+  [% for (schema in schema.linkedSchemas) { %]
+  [% if (schema.object= true and schema.objectArray = false) {%]
+  private [%= schema.schema.name%] [%= schema.name%]; 
+  public [%= schema.schema.name%] get[%= schema.name.firstToUpperCase()%]() { return this.[%= schema.name%]; }
+  public void set[%= schema.name.firstToUpperCase()%]([%= schema.schema.name%] [%= schema.name%]) { this.[%= schema.name%] = [%= schema.name%]; }
+
+  [% } %]
+  [% if (schema.object = true and schema.objectArray = true) {%]
+  private java.util.List<[%= schema.schema.name%]> [%= schema.name%];
+  public java.util.List<[%= schema.schema.name%]> get[%= schema.name.firstToUpperCase()%]() { return this.[%= schema.name%]; }
+  public void set[%= schema.name.firstToUpperCase()%](java.util.List<[%= schema.schema.name%]> [%= schema.name%]) { this.[%= schema.name%] = [%= schema.name%]; }
+
+  [% } %]
+  [% if (schema.objectLink = true and schema.objectLinkArray = false) {%]
+  private String [%= schema.name%]; 
+  public String get[%= schema.name.firstToUpperCase()%]() { return this.[%= schema.name%]; }
+  public void set[%= schema.name.firstToUpperCase()%](String [%= schema.name%]) { this.[%= schema.name%] = [%= schema.name%]; }
+
+  [% } %]
+  [% if (schema.objectLink = true and schema.objectLinkArray = true) {%]
+  private java.util.List<String> [%= schema.name%];
+  public java.util.List<String> get[%= schema.name.firstToUpperCase()%]() { return this.[%= schema.name%]; }
+  public void set[%= schema.name.firstToUpperCase()%](java.util.List<String> [%= schema.name%]) { this.[%= schema.name%] = [%= schema.name%]; }
+
+  [% } %]
+  [% } %]
+}

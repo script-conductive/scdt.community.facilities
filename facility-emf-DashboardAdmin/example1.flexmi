@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?nsuri http://DashboardAdmin?>
+
+<project 
+  name="Example1"  
+  author="UndefinedAuthor"
+  copyrights="UndefinedCopyrights"
+  packageName="javacode.example1"
+  > 
+
+  <schema name="Customer" collectionName="customer" containsImage="true" containsRichContent="true">
+    <attr name="email" type="String" index="true" unique="true" required="true"/>
+    <attr name="active" type="Boolean" index="true"/>
+    <attr name="registeredOn" type="Date" index="true"/>
+  </schema>
+
+  <schema name="Product" collectionName="product">
+    <attr name="name" type="String" index="true" unique="true" required="true"/>
+    <attr name="description" type="String"/>
+    <attr name="unit" type="String"/>
+    <attr name="available" type="Number"/>
+    <attr name="createdOn" type="Date"/>
+    <attr name="updatedOn" type="Date"/>
+    <attr name="productType" enumType="ProductType" index="false" required="true"/>
+  </schema>
+  
+  <enum name="ProductType" values="'Type1', 'Type2'" />
+
+  <enum name="PaymentMethod" values="'CreditCard', 'Paypal'" />
+  
+  <enum name="TransactionType" values="'Charge', 'Refund'" />
+
+  <schema name="Order" collectionName="order">
+    <attr name="purchasedOn" type="Date" index="true" required="true"/>
+    <attr name="paymentMethod" enumType="PaymentMethod" index="false" required="true"/>
+    <attr name="transactionType" enumType="TransactionType" index="false" required="true"/>
+    <attr name="transactionAmount" type="Number" index="false" required="true"/>
+    <attr name="quantity" type="Number" index="true" required="false"/>
+    <linkedSchema name="customerId" schema="Customer"  objectLink="true" index="true" required="true"/>
+    <linkedSchema name="productId" schema="Product"  objectLink="true" index="true" required="true"/>
+  </schema>
+
+  <dashboard 
+    mongoUrl="mongodb://admin:H9ta5LRW47N8gdC4qmMBeXVjS3fcMFjzauKD@localhost:27017/Example1?serverSelectionTimeoutMS=5000&amp;connectTimeoutMS=10000&amp;authSource=admin&amp;authMechanism=SCRAM-SHA-256"
+    schemas="Customer, Product, Order"
+  />
+
+</project>

@@ -1,0 +1,53 @@
+// -- filename: Models/[%=schema.name%].js
+// -- created on: [%= new Native("java.util.Date") %]
+// 
+const mongoose = require("mongoose");
+const {Schema} = mongoose;
+
+[% for (linkedSchema in schema.linkedSchemas) { %]
+[% if (linkedSchema.object = true) {%]
+const [%= linkedSchema.schema.name%]Schema = require("./[%= linkedSchema.schema.name%]Schema")();
+[% } %]
+[% } %]
+
+module.exports = function() {
+  const schema = new Schema (
+    {
+      [% for (attr in schema.attrs) { %]
+      [% if (attr.array = false) {%]
+      [%= attr.name%]: {type: [% if (attr.enumType <> null) {%]String, enum: [[%= attr.enumType.values %]][% } %][% if (attr.enumType = null) {%][%= attr.type%][% } %], required: [%= attr.required %], unique: [%= attr.unique %],  index: [%= attr.index %]},
+      [% } %]
+      [% if (attr.array = true) {%]
+      [%= attr.name%]: [{type: [%= attr.type%], required: [%= attr.required %], unique: [%= attr.unique %], index: [%= attr.index %]}],
+      [% } %]
+      [% } %]
+      [% for (schema in schema.linkedSchemas) { %]
+      [% if (schema.object = true and schema.objectArray = false) {%]
+      [%= schema.name%]: [%= schema.schema.name%]Schema,
+      [% } %]
+      [% if (schema.object = true and schema.objectArray = true) {%]
+      [%= schema.name%]: [[%= schema.schema.name%]Schema],
+      [% } %]
+      [% if (schema.object = false and schema.objectLink = true and schema.objectLinkArray = false) {%]
+      [%= schema.name%]: {
+        type: Schema.Types.ObjectId,
+        ref: "[%= schema.schema.name%]",
+        required: [%= schema.required %],
+        unique: [%= schema.unique %],
+        index: [%= schema.index %],
+      },
+      [% } %]
+      [% if (schema.object = false and schema.objectLink = true and schema.objectLinkArray = true) {%]
+      [%= schema.name%]: [{
+        type: Schema.Types.ObjectId,
+        ref: "[%= schema.schema.name%]",
+        required: [%= schema.required %],
+        unique: [%= schema.unique %],
+        index: [%= schema.index %],
+      }],
+      [% } %]
+     [% } %]
+    }
+  );
+  return schema;
+}

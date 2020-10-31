@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<project name="SimplifiedWebsite">
+  <website 
+    name="WebDocumentation"
+    label="WebDocumentation example"
+    visitLinkLabel="Visit my web documentation!"
+    maintainer="YourName" 
+    about="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+    >
+    
+      <page name="Welcome" label="Welcome" about="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" isDefaultPage="true">
+        
+        <h1 label="Section 1"/>
+        <text label="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at quam vel dolor ultricies consectetur a vel massa. Praesent eget faucibus turpis. Suspendisse varius eleifend auctor. Aenean eu lacus et ante fermentum sollicitudin vel quis lorem. Nam ultrices volutpat erat id pretium. Praesent feugiat mollis dictum. Nulla finibus ex ac ante bibendum ornare. Quisque condimentum fermentum diam, sit amet laoreet tortor auctor ac. Aliquam porttitor auctor condimentum. Nunc et dui semper, sodales risus id, iaculis ex. Fusce velit orci, imperdiet id dui sit amet, pretium accumsan mauris."/>
+        
+        <h1 label="Section 2"/>
+        <text label="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at quam vel dolor ultricies consectetur a vel massa. Praesent eget faucibus turpis. Suspendisse varius eleifend auctor. Aenean eu lacus et ante fermentum sollicitudin vel quis lorem. Nam ultrices volutpat erat id pretium. Praesent feugiat mollis dictum. Nulla finibus ex ac ante bibendum ornare. Quisque condimentum fermentum diam, sit amet laoreet tortor auctor ac. Aliquam porttitor auctor condimentum. Nunc et dui semper, sodales risus id, iaculis ex. Fusce velit orci, imperdiet id dui sit amet, pretium accumsan mauris."/>
+
+        <h2 label="Heading2"/>
+        
+        <h3 label="Heading3"/>
+        
+        <h4 label="Heading4"/>
+        
+        <h5 label="Heading5"/>
+        
+        <h6 label="Heading6"/>
+        
+        <text label="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at quam vel dolor ultricies consectetur a vel massa. Praesent eget faucibus turpis. Suspendisse varius eleifend auctor. Aenean eu lacus et ante fermentum sollicitudin vel quis lorem. Nam ultrices volutpat erat id pretium. Praesent feugiat mollis dictum. Nulla finibus ex ac ante bibendum ornare. Quisque condimentum fermentum diam, sit amet laoreet tortor auctor ac. Aliquam porttitor auctor condimentum. Nunc et dui semper, sodales risus id, iaculis ex. Fusce velit orci, imperdiet id dui sit amet, pretium accumsan mauris."/>
+        
+        <code label="
+        public class HelloWorld {&lt;br&gt;
+      &amp;nbsp;public static void main(String[] args) {&lt;br&gt;
+      &amp;nbsp;&amp;nbsp;System.out.println(&quot;Hello, World&quot;);&lt;br&gt;
+      &amp;nbsp;}&lt;br&gt;
+      }&lt;br&gt;
+          "/>
+        
+        <miniimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+        <tinyimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+        <smallimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+        <mediumimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+        <largeimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+        <bigimg src="https://semantic-ui.com/images/wireframe/image.png"/>
+      
+      <link label="Link" link="http://www.google.com"/>
+      
+      <pagelink label="Page Link" page="AnotherPage"/>
+      
+      <linkbutton link="http://www.google.com" label="Link Button"/>
+      
+      <pagelinkbutton link="http://www.google.com" page="AnotherPage" label="Page Link button"/>
+    </page> 
+  
+    <page name="AnotherPage" label="Another Page" about="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"> 
+      </page> 
+     
+  </website>   
+</project> 

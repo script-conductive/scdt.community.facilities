@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="CustomerJourney" nsURI="http://CustomerJourney" nsPrefix="CustomerJourney">
+  <eClassifiers xsi:type="ecore:EClass" name="Persona">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Actor" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minAge" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxAge" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="organization" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageUrl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Touchpoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" ordered="false"
+        lowerBound="1" eType="#//ResourceType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ResourceType">
+    <eLiterals name="Undefined"/>
+    <eLiterals name="Software" value="1"/>
+    <eLiterals name="Hardware" value="2"/>
+    <eLiterals name="Network" value="3"/>
+    <eLiterals name="Personnel" value="4"/>
+    <eLiterals name="Site" value="5"/>
+    <eLiterals name="Data" value="6"/>
+    <eLiterals name="Process" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_UseCase" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageUrl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_UseCase" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedTimeValue" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usedTimeUnit" ordered="false"
+        lowerBound="1" eType="#//StepUsedTimeUnit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentEmotionText" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentEmotionScore" ordered="false"
+        lowerBound="1" eType="#//CustomerEmotionScore"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageUrl" ordered="false"
+        lowerBound="1" eType="ecore:EDataType ../org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StepUsedTimeUnit">
+    <eLiterals name="Second"/>
+    <eLiterals name="Minute" value="1"/>
+    <eLiterals name="Hour" value="2"/>
+    <eLiterals name="Day" value="3"/>
+    <eLiterals name="Week" value="4"/>
+    <eLiterals name="Month" value="5"/>
+    <eLiterals name="Year" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CustomerEmotionScore">
+    <eLiterals name="one" value="1"/>
+    <eLiterals name="two" value="2"/>
+    <eLiterals name="three" value="3"/>
+    <eLiterals name="four" value="4"/>
+    <eLiterals name="five" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expectation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Actor" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" ordered="false"
+        lowerBound="1" eType="#//Priority"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Priority">
+    <eLiterals name="Undefined"/>
+    <eLiterals name="Low" value="1"/>
+    <eLiterals name="Medium" value="2"/>
+    <eLiterals name="High" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Actor" ordered="false"
+        eType="ecore:EClass ../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceType" ordered="false"
+        lowerBound="1" eType="#//ResourceType"/>
+  </eClassifiers>
+</ecore:EPackage>

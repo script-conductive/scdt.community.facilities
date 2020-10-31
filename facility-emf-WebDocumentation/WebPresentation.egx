@@ -1,0 +1,36 @@
+pre {
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+}
+
+rule Presentation 
+  transform website : Website { 
+  template : "./templates/WebPresentation/index.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/index.html"
+}
+
+rule ResetCSS 
+  transform website : Website { 
+  template : "./templates/WebPresentation/reset.css.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/css/reset.css"
+}
+
+rule RevealCSS 
+  transform website : Website { 
+  template : "./templates/WebPresentation/reveal.css.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/css/reveal.css"
+}
+
+rule SimpleThemeCSS 
+  transform website : Website { 
+  template : "./templates/WebPresentation/simple.css.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/css/simple.css"
+}
+
+
+rule RevealJS
+  transform website : Website { 
+  template : "./templates/WebPresentation/reveal.js.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/js/reveal.js"
+}

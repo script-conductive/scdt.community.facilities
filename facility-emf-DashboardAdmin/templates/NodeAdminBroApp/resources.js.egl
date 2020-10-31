@@ -1,0 +1,12 @@
+// -- filename: Resources/[%=schema.name%].js
+// -- created on: [%= new Native("java.util.Date") %]
+// 
+module.exports = function(resource, commonResourceSetting) {
+  let res =  
+    {
+      resource: resource, //[%=schema.name%]
+      options: {}
+    };
+  res.options = commonResourceSetting;
+  return res;
+}

@@ -1,0 +1,36 @@
+{
+    "type": "emf",
+    "name": "DashboardAdmin",
+    "metamodel": {
+        "type": "emf",
+        "lang": "emfatic",
+    	"name": "DashboardAdmin",
+    	"namespace": "http://DashboardAdmin",
+    	"website": null,
+		"gitrepo": null,
+		"emfMetamodel": "metamodel.emf",
+		"emfMetamodelData": null,
+    	"umlProfile": false,
+    	"umlProfileUri": null,
+    	"umlProfilePackageQualifiedClassName": null,
+    	"umlProfileJar": null,
+    	"umlProfileModel": null
+    },
+    "generators": [
+    	{ 
+    		"name": "JavaSpringBootApp",
+			"artifactPreviewUrl": "tbd",
+			"exampleModel": "example1.flexmi",
+			"exampleModelData": null
+		},
+		{ 
+    		"name": "NodeAdminBroApp",
+			"artifactPreviewUrl": "tbd",
+			"exampleModel":  "example1.flexmi",
+			"exampleModelData": null
+		}
+    ],
+    "website": null,
+    "gitrepo": null,
+    "publisher": "Vorachet Jaroensawas <vorachet@script-conductive.com>"
+}

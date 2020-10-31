@@ -1,0 +1,13 @@
+// -- filename: Models/[%=schema.name%].js
+// -- created on: [%= new Native("java.util.Date") %]
+
+const mongoose = require("mongoose");
+const [%=schema.name%]Schema = require("./[%=schema.name%]Schema")()
+
+module.exports = function() {
+  return mongoose.model(
+    "[%=schema.name%]",
+   [%=schema.name%]Schema,
+    "[%=schema.collectionName%]",
+  );
+}

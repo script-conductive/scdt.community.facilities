@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CustomerJourney="http://CustomerJourney" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://CustomerJourney CustomerJourney.profile.uml#_b0nH0BkmEeuxgcy6_kiY6g">
+  <uml:Model xmi:id="_QdfsMBhCEeuH77eS3yKljg" name="SimpleExample">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_Qd1qcBhCEeuH77eS3yKljg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BG3gkBkrEeuxgcy6_kiY6g" name="Persona1">
+      <packagedElement xmi:type="uml:Actor" xmi:id="_KObUQBkmEeuxgcy6_kiY6g" name="Persona1"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_QK-80BknEeuxgcy6_kiY6g" name="ExpectedQuality1"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_RkPOwBknEeuxgcy6_kiY6g" name="Stage1">
+        <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_aHqhABkqEeuxgcy6_kiY6g" name="ExtensionPoint2"/>
+        <include xmi:type="uml:Include" xmi:id="_mMEY8BkoEeuxgcy6_kiY6g" addition="_lYHo8BknEeuxgcy6_kiY6g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_WutIgBknEeuxgcy6_kiY6g" memberEnd="_Wuwy4BknEeuxgcy6_kiY6g _WuxZ8BknEeuxgcy6_kiY6g">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Wuu9sBknEeuxgcy6_kiY6g" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Wuu9sRknEeuxgcy6_kiY6g" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Wuwy4BknEeuxgcy6_kiY6g" name="stage1" type="_RkPOwBknEeuxgcy6_kiY6g" association="_WutIgBknEeuxgcy6_kiY6g"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_WuxZ8BknEeuxgcy6_kiY6g" name="aname" type="_KObUQBkmEeuxgcy6_kiY6g" association="_WutIgBknEeuxgcy6_kiY6g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_lYHo8BknEeuxgcy6_kiY6g" name="Step1"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_ElIzsBkqEeuxgcy6_kiY6g" client="_KObUQBkmEeuxgcy6_kiY6g" supplier="_QK-80BknEeuxgcy6_kiY6g"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_7vqoYBmYEeuxgcy6_kiY6g" name="ServiceResource1"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_827LYBmYEeuxgcy6_kiY6g" client="_lYHo8BknEeuxgcy6_kiY6g" supplier="_7vqoYBmYEeuxgcy6_kiY6g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_CpB24BkrEeuxgcy6_kiY6g" name="Persona2">
+      <packagedElement xmi:type="uml:Actor" xmi:id="_iiuW4BksEeuxgcy6_kiY6g" name="Persona2"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_wNGfYBkwEeuxgcy6_kiY6g" name="StageA">
+        <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_XyeHEBkxEeuxgcy6_kiY6g" name="ExtensionPoint1"/>
+        <include xmi:type="uml:Include" xmi:id="_uj_-IBkxEeuxgcy6_kiY6g" addition="_s0GGwBkxEeuxgcy6_kiY6g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_x8dkMBkwEeuxgcy6_kiY6g" memberEnd="_x8eLQhkwEeuxgcy6_kiY6g _x8eLQxkwEeuxgcy6_kiY6g">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x8eLQBkwEeuxgcy6_kiY6g" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x8eLQRkwEeuxgcy6_kiY6g" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_x8eLQhkwEeuxgcy6_kiY6g" name="usecase2" type="_wNGfYBkwEeuxgcy6_kiY6g" association="_x8dkMBkwEeuxgcy6_kiY6g"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_x8eLQxkwEeuxgcy6_kiY6g" name="persona2" type="_iiuW4BksEeuxgcy6_kiY6g" association="_x8dkMBkwEeuxgcy6_kiY6g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_XMWiQBkxEeuxgcy6_kiY6g" name="StageB">
+        <extend xmi:type="uml:Extend" xmi:id="_XydgABkxEeuxgcy6_kiY6g" extendedCase="_wNGfYBkwEeuxgcy6_kiY6g" extensionLocation="_XyeHEBkxEeuxgcy6_kiY6g"/>
+        <include xmi:type="uml:Include" xmi:id="_DNS9YBkyEeuxgcy6_kiY6g" addition="_BNMG0BkyEeuxgcy6_kiY6g"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_KoHhcBk4Eeuxgcy6_kiY6g" name="ServiceResource2"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_czbZsBmYEeuxgcy6_kiY6g" name="ExpectedQuality2"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_fXIskBmYEeuxgcy6_kiY6g" client="_iiuW4BksEeuxgcy6_kiY6g" supplier="_czbZsBmYEeuxgcy6_kiY6g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xz4agBkxEeuxgcy6_kiY6g" name="System">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_Ldx-IBk4Eeuxgcy6_kiY6g" client="_BNMG0BkyEeuxgcy6_kiY6g" supplier="_KoHhcBk4Eeuxgcy6_kiY6g"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_PRF2EBmYEeuxgcy6_kiY6g" client="_DocBQBkyEeuxgcy6_kiY6g" supplier="_KoHhcBk4Eeuxgcy6_kiY6g"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_24xQsBkxEeuxgcy6_kiY6g" name="Touchpoint1" useCase="_s0GGwBkxEeuxgcy6_kiY6g _BNMG0BkyEeuxgcy6_kiY6g _DocBQBkyEeuxgcy6_kiY6g">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_s0GGwBkxEeuxgcy6_kiY6g" name="StepA1" subject="_24xQsBkxEeuxgcy6_kiY6g">
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_F1vmURkyEeuxgcy6_kiY6g" name="ExtensionPoint1"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_BNMG0BkyEeuxgcy6_kiY6g" name="StepB1" subject="_24xQsBkxEeuxgcy6_kiY6g"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_DocBQBkyEeuxgcy6_kiY6g" name="StepA2" subject="_24xQsBkxEeuxgcy6_kiY6g">
+          <extend xmi:type="uml:Extend" xmi:id="_F1vmUBkyEeuxgcy6_kiY6g" extendedCase="_s0GGwBkxEeuxgcy6_kiY6g" extensionLocation="_F1vmURkyEeuxgcy6_kiY6g"/>
+        </ownedUseCase>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_GqdeQBkmEeuxgcy6_kiY6g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9rgUUBknEeuxgcy6_kiY6g" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9rgUURknEeuxgcy6_kiY6g" key="Version" value="0.0.15"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9rgUUhknEeuxgcy6_kiY6g" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9rgUUxknEeuxgcy6_kiY6g" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9rgUVBknEeuxgcy6_kiY6g" key="Date" value="2020-10-28"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9rgUVRknEeuxgcy6_kiY6g" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GqeFUBkmEeuxgcy6_kiY6g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="CustomerJourney.profile.uml#_b0nH0BkmEeuxgcy6_kiY6g"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="CustomerJourney.profile.uml#_X7S4UBgzEeuH77eS3yKljg"/>
+    </profileApplication>
+  </uml:Model>
+  <CustomerJourney:Persona xmi:id="_MCcPkBkmEeuxgcy6_kiY6g" base_Actor="_KObUQBkmEeuxgcy6_kiY6g" minAge="20" maxAge="90" position="Manager"/>
+  <CustomerJourney:Stage xmi:id="_Xm4tsBknEeuxgcy6_kiY6g" base_UseCase="_RkPOwBknEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Step xmi:id="_pcoAMBknEeuxgcy6_kiY6g" base_UseCase="_lYHo8BknEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Persona xmi:id="_j2iIIBksEeuxgcy6_kiY6g" base_Actor="_iiuW4BksEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Stage xmi:id="_xdqvYBkwEeuxgcy6_kiY6g" base_UseCase="_wNGfYBkwEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Step xmi:id="_uH9iYBkxEeuxgcy6_kiY6g" base_UseCase="_s0GGwBkxEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Step xmi:id="_Czbr4BkyEeuxgcy6_kiY6g" base_UseCase="_BNMG0BkyEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Stage xmi:id="_yIp7MBkyEeuxgcy6_kiY6g" base_UseCase="_XMWiQBkxEeuxgcy6_kiY6g"/>
+  <CustomerJourney:ServiceResource xmi:id="_OKNvMBk4Eeuxgcy6_kiY6g" base_Actor="_KoHhcBk4Eeuxgcy6_kiY6g"/>
+  <CustomerJourney:Step xmi:id="_SYUFsBmYEeuxgcy6_kiY6g" base_UseCase="_DocBQBkyEeuxgcy6_kiY6g"/>
+  <CustomerJourney:ServiceResource xmi:id="_BCQjYBmZEeuxgcy6_kiY6g" base_Actor="_7vqoYBmYEeuxgcy6_kiY6g"/>
+  <CustomerJourney:Touchpoint xmi:id="_FkefcBmbEeuxgcy6_kiY6g" base_Class="_24xQsBkxEeuxgcy6_kiY6g"/>
+</xmi:XMI>

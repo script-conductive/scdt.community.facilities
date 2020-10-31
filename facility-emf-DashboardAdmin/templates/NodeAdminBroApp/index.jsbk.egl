@@ -1,0 +1,134 @@
+const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+const {Schema} = mongoose;
+const express = require("express");
+const formidableMiddleware = require("express-formidable");
+const AdminBro = require("admin-bro");
+const AdminBroExpressjs = require("admin-bro-expressjs");
+AdminBro.registerAdapter(require("admin-bro-mongoose"));
+const app = express();
+app.use(formidableMiddleware());
+
+[% for (schema in dashboard.schemas) { %]
+// Model::[%=schema.name%]
+const [%=schema.name%] = require('../Models/[%=schema.name%].js')(mongoose, Schema);
+app.get("/[%=schema.name%]", async (req, res) => {
+  const docs = await [%=schema.name%].find({}).limit(10);
+  res.send(docs);
+});
+app.post("/[%=schema.name%]", async (req, res) => {
+  const doc = await new [%=schema.name%](req.fields.client).save();
+  res.send(doc);
+});
+[% } %]
+
+app.get("/", (req, res) => res.send("Contact admin"));
+
+
+[% for (schema in dashboard.schemas) { %]
+let res_[%=schema.name%] = { properties: {
+  _id: {isVisible: {list: false, show: true, edit: false, filter: false}}
+}};
+[% if (schema.containsImage = true) { %]
+res_[%=schema.name%].properties.image = {
+  components: {
+        // list, show, edit or filter
+    list: AdminBro.require('./image'),
+    show: AdminBro.require('./image'),
+  }
+};
+[% } %]
+[% if (schema.containsRichContent = true) { %]
+res_[%=schema.name%].properties.content = {
+  type: 'richtext',
+  custom: {},
+};
+[% } %]
+[% } %]
+
+const User = mongoose.model('User', {
+  email: { type: String, required: true },
+  encryptedPassword: { type: String, required: true },
+  role: { type: String, enum: ['admin', 'restricted'], required: true },
+}, "user",)
+
+const adminBro = new AdminBro({
+  resources: [
+    {
+      resource: User,
+      options: {
+        properties: {
+          encryptedPassword: {
+            isVisible: false,
+          },
+          password: {
+            type: 'string',
+            isVisible: {
+              list: false, edit: true, filter: false, show: false,
+            },
+          },
+        },
+        actions: {
+          new: {
+            before: async (request) => {
+              if(request.payload.password) {
+                request.payload = {
+                  ...request.payload,
+                  encryptedPassword: await bcrypt.hash(request.payload.password, 10),
+                  password: undefined,
+                }
+              }
+              return request
+            },
+          }
+        }
+      }
+    },
+    [% for (schema in dashboard.schemas) { %]
+    require('../Resources/[%=schema.name%].js')([%=schema.name%], res_[%=schema.name%]),
+    [% } %]
+  ],
+  dashboard: {
+    component: AdminBro.bundle("./dashboard"),
+  },
+  branding: {
+    companyName: "[%= dashboard.name %]",
+    softwareBrothers: false,
+  },
+});
+
+const router = AdminBroExpressjs.buildRouter(adminBro);
+const secureRouter = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
+  authenticate: async (email, password) => {
+    const user = await User.findOne({ email })
+    if (user) {
+      const matched = await bcrypt.compare(password, user.encryptedPassword)
+      if (matched) {
+        return user
+      }
+    }
+    return false
+  },
+  cookiePassword: 'some-secret-password-used-to-secure-cookie',
+})
+
+// Use this line after non login
+// app.use(adminBro.options.rootPath, router);
+
+// Use this line for secure login
+app.use(adminBro.options.rootPath, secureRouter);
+
+// Running the server
+const run = async () => {
+  await mongoose.connect(
+    "[%= dashboard.mongoUrl %]",
+    {
+      useNewUrlParser: true,
+    }
+  );
+  await app.listen([%= dashboard.appPort %], () =>
+    console.log(`[%= dashboard.name %] app listening on port [%= dashboard.appPort %]!`)
+  );
+};
+
+run();

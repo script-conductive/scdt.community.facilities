@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>UMLModelExample</title>
+  <link href="UMLModelExampleUseCaseTable.css" rel="stylesheet">
+  <script src="UMLModelExampleUseCaseTable.js"></script>
+  <style>
+  	body {
+  	  margin:0;
+  	  padding: 0px;
+  	  font-family: "Lucida Grande", sans-serif;
+  	}
+  	.table {
+  		margin-bottom: 20px;
+  	}
+  </style>
+</head>
+
+<body>
+ <div id="uc2actor" class="table"></div>
+ <div id="uc2uc" class="table"></div>
+ <div id="actor2actor" class="table"></div>
+ <script>
+ const height = "280px";
+ const layout = "";"fitDataTable"; 
+ let usecases = {};
+ usecases["UseCase1"] = {
+    include: [
+      {name: "UseCase2"},
+    ],
+    extend: [
+    ],
+    generalization: [
+    ]
+ };
+ usecases["UseCase3"] = {
+    include: [
+    ],
+    extend: [
+      {name: "UseCase1"},
+    ],
+    generalization: [
+    ]
+ };
+ usecases["UseCase2"] = {
+    include: [
+    ],
+    extend: [
+    ],
+    generalization: [
+    ]
+ };
+ 
+ let actors = {};
+ actors["Actor1"] = {
+    generalization: [
+      {name: "Actor0"},
+    ]
+ };
+ actors["Actor0"] = {
+    generalization: [
+    ]
+ };
+ 
+ let associations = [];
+ associations.push({
+    oid: "_p875kBs4Eeuo2ubwHax2mw",
+    name: "",
+    actor: {
+    	id: "_kKINcBs4Eeuo2ubwHax2mw",
+    	name: "Actor1"
+    },            
+    usecase: {
+     	id: "_kjkBIBs4Eeuo2ubwHax2mw",
+     	name: "UseCase1"
+    } });
+ 
+ function getActors(ucOid) {
+   return associations.filter((a) => a.usecase.id == ucOid);
+ }
+    
+ var tabledata_uc2actor = [
+ 	{
+ 		id: "_kjkBIBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase1",
+ 		"Actor1": "",
+ 		"Actor0": "",
+ 	},
+ 	{
+ 		id: "_k_kAoBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase3",
+ 		"Actor1": "",
+ 		"Actor0": "",
+ 	},
+ 	{
+ 		id: "_lXfYcBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase2",
+ 		"Actor1": "",
+ 		"Actor0": "",
+ 	},
+ ];
+ 
+ tabledata_uc2actor.forEach((u) => {
+   let actors = getActors(u.id);
+   actors.forEach((a) => {
+     u[a.actor.name] = "↵";
+   })  
+ }); 
+ 
+ var table_uc2actor = new Tabulator("#uc2actor", {
+    height: height,
+    layout: layout,
+    data:tabledata_uc2actor,
+    columns:[
+    	{title:"", field:"usecase", headerSort:false, headerVertical:true},
+        {title:"Actor1", field:"Actor1", headerSort:false, headerVertical:true},
+        {title:"Actor0", field:"Actor0", headerSort:false, headerVertical:true},
+    ],
+  });
+
+  var tabledata_uc2uc = [
+ 	{
+ 		id: "_kjkBIBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase1",
+ 		"UseCase1": "",
+ 		"UseCase3": "",
+ 		"UseCase2": "",
+ 	},
+ 	{
+ 		id: "_k_kAoBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase3",
+ 		"UseCase1": "",
+ 		"UseCase3": "",
+ 		"UseCase2": "",
+ 	},
+ 	{
+ 		id: "_lXfYcBs4Eeuo2ubwHax2mw",
+ 		usecase:"UseCase2",
+ 		"UseCase1": "",
+ 		"UseCase3": "",
+ 		"UseCase2": "",
+ 	},
+ ];
+ 
+ // Includes
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].include.forEach((c) => {
+   	 u[c.name] = "I⤴";
+   });
+ }); 
+ 
+ // Extends
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].extend.forEach((c) => {
+   	 u[c.name] = "E⤴";
+   });
+ }); 
+ 
+ // Generalization
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].generalization.forEach((c) => {
+   	 u[c.name] = "G⤴";
+   });
+ }); 
+ 
+  var table_uc2uc = new Tabulator("#uc2uc", {
+    height: height,
+    layout: layout,
+    data:tabledata_uc2uc,
+    columns:[
+    	{title:"", field:"usecase", headerSort:false, headerVertical:true},
+        {title:"UseCase1", field:"UseCase1", headerSort:false, headerVertical:true},
+        {title:"UseCase3", field:"UseCase3", headerSort:false, headerVertical:true},
+        {title:"UseCase2", field:"UseCase2", headerSort:false, headerVertical:true},
+    ],
+  });
+  
+  var tabledata_actor2actor = [
+ 	{
+ 		id: "_kKINcBs4Eeuo2ubwHax2mw",
+ 		actor:"Actor1",
+ 		"Actor1": "",
+ 		"Actor0": "",
+ 	},
+ 	{
+ 		id: "_q0Nf0Bs4Eeuo2ubwHax2mw",
+ 		actor:"Actor0",
+ 		"Actor1": "",
+ 		"Actor0": "",
+ 	},
+ ];
+ 
+  // Generalization
+ tabledata_actor2actor.forEach((a) => {
+   actors[a.actor].generalization.forEach((c) => {
+   	 a[c.name] = "G⤴";
+   });
+ }); 
+ 
+  var table_actor2actor = new Tabulator("#actor2actor", {
+    height: height,
+    layout: layout,
+    responsiveLayout: "collapse",
+    data:tabledata_actor2actor,
+    columns:[
+    	{title:"", field:"actor", headerSort:false, headerVertical:true},
+        {title:"Actor1", field:"Actor1", headerSort:false, headerVertical:true},
+        {title:"Actor0", field:"Actor0", headerSort:false, headerVertical:true},
+    ],
+  });
+
+</script>
+</body>
+
+</html>

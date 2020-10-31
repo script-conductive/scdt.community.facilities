@@ -1,0 +1,17 @@
+pre {
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+}
+
+rule Websites 
+  transform website : Website { 
+  template : "./templates/WebDocumentation/index.egl"  
+  target : ARTIFACT_DIR + "/" + website.name + "/index.html"
+}
+
+rule Pages 
+  transform page : Page { 
+  template : "./templates/WebDocumentation/page.egl"  
+  target : ARTIFACT_DIR + "/" + page.eContainer.name + "/" + page.name + ".html"
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<project name="WebPresentation">
+  <website 
+    name="WebPresentation"
+    label="WebPresentation example"
+    visitLinkLabel="Visit my web documentation!"
+    maintainer="YourName" 
+    about="About this presentation"
+    >
+    
+      <page name="Code" label="Code Section">
+        <text label="Let's discuss about this code."/>
+        <code label="
+      public class HelloWorld {&lt;br&gt;
+      &amp;nbsp;public static void main(String[] args) {&lt;br&gt;
+      &amp;nbsp;&amp;nbsp;System.out.println(&quot;Hello, World&quot;);&lt;br&gt;
+      &amp;nbsp;}&lt;br&gt;
+      }&lt;br&gt;
+          "/>
+     </page> 
+     
+     <page name="ImageTextSection" label="Image and Text">
+        <text label="Chiangmai, is the largest city in northern Thailand and the capital of Chiang Mai Province"/>
+        <miniimg src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Chiangmai_view.jpg"/>
+     </page> 
+  
+    <page name="ThankYou" label="Thank you!"> </page> 
+     
+  </website>   
+</project> 

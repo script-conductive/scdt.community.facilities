@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>WebPresentation</title>
+
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/simple.css" id="theme">
+	</head>
+	
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			
+				<section>
+					<h2>[%=website.label%]</h2>
+					<p>[%=website.about%]</p>
+					<p>
+						<small>[%=website.maintainer%]</small>
+					</p>
+				</section>
+				
+				[% for(page in website.pages) {%]
+				<section>
+				
+				<h2>[%=page.label%]</h2>
+				[% for (e in page.elements) { %]
+[% if (e.type.name == "H1") { %]<h1 id="[%=e.label%]" class="ui header"><a id="[%= e.label%]"></a>[%= e.label%]</h1>[% } %]
+[% if (e.type.name == "H2") { %]<h2 class="ui header">[%= e.label%]</h2>[% } %]
+[% if (e.type.name == "H3") { %]<h3 class="ui header">[%= e.label%]</h3>[% } %]
+[% if (e.type.name == "H4") { %]<h4 class="ui header">[%= e.label%]</h4>[% } %]
+[% if (e.type.name == "H5") { %]<h5 class="ui header">[%= e.label%]</h5>[% } %]
+[% if (e.type.name == "H6") { %]<h6 class="ui header">[%= e.label%]</h6>[% } %]
+[% if (e.type.name == "Text") { %]<p>[%= e.label%]</p>[% } %]
+[% if (e.type.name == "Code") { %]<pre><code>[%= e.label%]</code></pre>[% } %]
+[% if (e.type.name == "MiniImage") { %]<p><img style="height: 400px;" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "TinyImage") { %]<p><img class="ui tiny image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "SmallImage") { %]<p><img class="ui small image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "MediumImage") { %]<p><img class="ui medium image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "LargeImage") { %]<p><img class="ui large image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "BigImage") { %]<p><img class="ui big image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "Link") { %]<p><a href="[%= e.link%]">[%= e.label%]</a></p>[% } %]
+[% if (e.type.name == "PageLink") { %]<p><a href="[%= e.page.name%].html">[%= e.label%]</a></p>[% } %]
+[% if (e.type.name == "LinkButton") { %]<p><input type="button" class="ui button" onclick="location.href='[%= e.link%]';" value="[%= e.label%]" /></p>[% } %]
+[% if (e.type.name == "PageLinkButton") { %]<p><input type="button" class="ui button" onclick="location.href='[%= e.page.name%].html';" value="[%= e.label%]" /></p>[% } %]
+[% } %]
+				</section>
+				[%}%]
+				
+				
+			</div>
+		</div>
+	</body>
+	
+	<script src="js/reveal.js"></script>
+	<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				plugins: []
+			});
+		</script>
+	</body>
+</html>

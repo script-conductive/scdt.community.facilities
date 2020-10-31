@@ -1,0 +1,70 @@
+package [%=packageName%].resources;
+
+import java.security.Principal;
+import java.util.Map;
+
+import org.bson.types.ObjectId;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@CrossOrigin
+public class [%=schema.name%]Controller {
+
+  @Autowired
+  private [%=schema.name%]Repository repo;
+
+  @GetMapping("/[%=schema.name%]List")
+  public Map<String, Object> getCustomerList(Principal principal, 
+    @RequestParam(required = false, defaultValue = "0") int page,
+    @RequestParam(required = false, defaultValue = "10") int size) {
+    //String userEmail = principal.getName();
+    return Helper.initResponseObject(repo.findAll(PageRequest.of(page, size)));
+  }
+
+  @GetMapping("/[%=schema.name%]/{id}")
+  public Map<String, Object> getCustomer(Principal principal, @PathVariable String id) {
+    //String userEmail = principal.getName();
+    return Helper.initResponseObject(repo.findById(id).get());
+  }
+
+  [% for (attr in schema.attrs.select(o|o.name <> "id" and o.richContent <> true)) { %]
+  [%
+    var type: String = "";
+    if (attr.type = "String") { type = "String"; }
+    if (attr.type = "Number") { type = "double"; }
+    if (attr.type = "Boolean") { type = "boolean"; }
+    if (attr.type = "Date") { type = "java.util.Date"; }
+    if (attr.enumType <> null) { type = "String"; }
+  %]
+  @GetMapping("/[%=schema.name%]ListBy[%=attr.name.firstToUpperCase()%]")
+  public Map<String, Object> get[%=schema.name%]ListBy[%=attr.name.firstToUpperCase()%](Principal principal,
+    @RequestParam(required = false, defaultValue = "0") int page,
+    @RequestParam(required = false, defaultValue = "10") int size,
+    @RequestParam(required = false, defaultValue = "undefined") [%=type%] [%=attr.name%]) {
+    //String userEmail = principal.getName();
+    Pageable pageable = PageRequest.of(page, size);
+    return Helper.initResponseObject(repo.findBy[%=attr.name.firstToUpperCase()%]([%=attr.name%], pageable));
+  }
+
+  [% }%]
+  [% for (_schema in schema.linkedSchemas) { %]
+  @GetMapping("/[%=schema.name%]ListBy[%=_schema.schema.name%]")
+  public Map<String, Object> get[%=schema.name%]ListBy[%=_schema.schema.name%](Principal principal,
+    @RequestParam(required = false, defaultValue = "0") int page,
+    @RequestParam(required = false, defaultValue = "10") int size,
+    @RequestParam(required = false, defaultValue = "undefined") String [%=_schema.name%]) {
+    //String userEmail = principal.getName();
+    Pageable pageable = PageRequest.of(page, size);
+    return Helper.initResponseObject(repo.findBy[%=_schema.name.firstToUpperCase()%](new ObjectId([%=_schema.name%]), pageable));
+  }
+
+  [%}%]
+}

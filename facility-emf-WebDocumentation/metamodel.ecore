@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="WebDocumentation" nsURI="http://WebDocumentation" nsPrefix="">
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Concepts" upperBound="-1"
+        eType="#//Concept" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Concept" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Website" eSuperTypes="#//Concept">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visitLinkLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maintainer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pages" upperBound="-1"
+        eType="#//Page" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Page" eSuperTypes="#//Concept">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDefaultPage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="about" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//HtmlElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HtmlElement" eSuperTypes="#//Concept"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H1" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H2" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H3" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H4" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H5" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="H6" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Code" eSuperTypes="#//HtmlElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PageLink" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="page" eType="#//Page"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MiniImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TinyImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SmallImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MediumImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LargeImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BigImage" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="src" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="link" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkButton" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="link" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PageLinkButton" eSuperTypes="#//HtmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="page" eType="#//Page"/>
+  </eClassifiers>
+</ecore:EPackage>

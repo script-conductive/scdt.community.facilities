@@ -1,0 +1,37 @@
+pre {
+	var modelroot=Package.all.select(c|c.type.name="Model").first();
+	var modelName : String = modelroot.name;
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+	
+	Persona.all.println("Persona");
+	Actor.all.println("Actors");
+	listStages();
+	Step.all.println("Steps");
+}
+
+rule Persona transform p : Persona { 
+  template : "./templates/CustomerJourneyMap/CustomerJourneyMap.html.egl"  
+  target : ARTIFACT_DIR + "/" + p.base_Actor.name + "_JourneyMap.html"
+}
+
+rule Css transform m : Model { 
+	guard : m.name = modelName
+	template : "./templates/helpers/tabulator-4.8.2.css.egl"  
+	target : ARTIFACT_DIR + "/tabulator-4.8.2.css"
+}
+
+rule Js transform m : Model { 
+	guard : m.name = modelName
+	template : "./templates/helpers/tabulator-4.8.2.js.egl"  
+	target : ARTIFACT_DIR + "/tabulator-4.8.2.js"
+}
+
+post {
+  "Finish...".println();
+}
+
+function listStages() {
+  Stage.all.println("Stages");
+}

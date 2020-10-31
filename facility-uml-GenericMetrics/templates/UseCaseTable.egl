@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>[%=m.name%]</title>
+  <link href="[%=m.name%]UseCaseTable.css" rel="stylesheet">
+  <script src="[%=m.name%]UseCaseTable.js"></script>
+  <style>
+  	body {
+  	  margin:0;
+  	  padding: 0px;
+  	  font-family: "Lucida Grande", sans-serif;
+  	}
+  	.table {
+  		margin-bottom: 20px;
+  	}
+  </style>
+</head>
+
+<body>
+ <div id="uc2actor" class="table"></div>
+ <div id="uc2uc" class="table"></div>
+ <div id="actor2actor" class="table"></div>
+ <script>
+ const height = "280px";
+ const layout = "";"fitDataTable"; 
+ let usecases = {};
+ [% for(uc in usecases) { %]
+ usecases["[%=uc.name%]"] = {
+    include: [
+    [% for(c in uc.include) { %]
+      {name: "[%=c.addition.name%]"},
+    [% } %]
+    ],
+    extend: [
+    [% for(c in uc.extend) { %]
+      {name: "[%=c.extendedCase.name%]"},
+    [% } %]
+    ],
+    generalization: [
+    [% for(c in uc.generalization) { %]
+      {name: "[%=c.general.name%]"},
+    [% } %]
+    ]
+ };
+ [% } %]
+ 
+ let actors = {};
+ [% for(a in actors) { %]
+ actors["[%=a.name%]"] = {
+    generalization: [
+    [% for(c in a.generalization) { %]
+      {name: "[%=c.general.name%]"},
+    [% } %]
+    ]
+ };
+ [% } %]
+ 
+ let associations = [];
+ [% for(ass in associations.select(o|o.type.name = "Association")) { %]
+ associations.push({
+    oid: "[%=ass.id%]",
+    name: "[%=ass.name%]",
+    [% for(end in ass.ownedEnd.select(o|o.type.eClass.name = "Actor")) { %]
+    actor: {
+    	id: "[%=end.type.id%]",
+    	name: "[%=end.type.name%]"
+    },[% } %]            
+    [% for(end in ass.ownedEnd.select(o|o.type.eClass.name = "UseCase")) { %]
+    usecase: {
+     	id: "[%=end.type.id%]",
+     	name: "[%=end.type.name%]"
+    }[% } %]
+ });
+ [% } %]
+ 
+ function getActors(ucOid) {
+   return associations.filter((a) => a.usecase.id == ucOid);
+ }
+    
+ var tabledata_uc2actor = [
+ 	[% for(uc in usecases) { %]
+ 	{
+ 		id: "[%=uc.id%]",
+ 		usecase:"[%=uc.name%]",
+ 		[% for(a in actors) { %]
+ 		"[%=a.name%]": "",
+ 		[% } %]
+ 	},
+ 	[% } %]
+ ];
+ 
+ tabledata_uc2actor.forEach((u) => {
+   let actors = getActors(u.id);
+   actors.forEach((a) => {
+     u[a.actor.name] = "↵";
+   })  
+ }); 
+ 
+ var table_uc2actor = new Tabulator("#uc2actor", {
+    height: height,
+    layout: layout,
+    data:tabledata_uc2actor,
+    columns:[
+    	{title:"", field:"usecase", headerSort:false, headerVertical:true},
+    	[% for(a in actors) { %]
+        {title:"[%=a.name%]", field:"[%=a.name%]", headerSort:false, headerVertical:true},
+        [% } %]
+    ],
+  });
+
+  var tabledata_uc2uc = [
+ 	[% for(uc in usecases) { %]
+ 	{
+ 		id: "[%=uc.id%]",
+ 		usecase:"[%=uc.name%]",
+ 		[% for(uc2 in usecases) { %]
+ 		"[%=uc2.name%]": "",
+ 		[% } %]
+ 	},
+ 	[% } %]
+ ];
+ 
+ // Includes
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].include.forEach((c) => {
+   	 u[c.name] = "I⤴";
+   });
+ }); 
+ 
+ // Extends
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].extend.forEach((c) => {
+   	 u[c.name] = "E⤴";
+   });
+ }); 
+ 
+ // Generalization
+ tabledata_uc2uc.forEach((u) => {
+   usecases[u.usecase].generalization.forEach((c) => {
+   	 u[c.name] = "G⤴";
+   });
+ }); 
+ 
+  var table_uc2uc = new Tabulator("#uc2uc", {
+    height: height,
+    layout: layout,
+    data:tabledata_uc2uc,
+    columns:[
+    	{title:"", field:"usecase", headerSort:false, headerVertical:true},
+    	[% for(uc in usecases) { %]
+        {title:"[%=uc.name%]", field:"[%=uc.name%]", headerSort:false, headerVertical:true},
+        [% } %]
+    ],
+  });
+  
+  var tabledata_actor2actor = [
+ 	[% for(a in actors) { %]
+ 	{
+ 		id: "[%=a.id%]",
+ 		actor:"[%=a.name%]",
+ 		[% for(a2 in actors) { %]
+ 		"[%=a2.name%]": "",
+ 		[% } %]
+ 	},
+ 	[% } %]
+ ];
+ 
+  // Generalization
+ tabledata_actor2actor.forEach((a) => {
+   actors[a.actor].generalization.forEach((c) => {
+   	 a[c.name] = "G⤴";
+   });
+ }); 
+ 
+  var table_actor2actor = new Tabulator("#actor2actor", {
+    height: height,
+    layout: layout,
+    responsiveLayout: "collapse",
+    data:tabledata_actor2actor,
+    columns:[
+    	{title:"", field:"actor", headerSort:false, headerVertical:true},
+    	[% for(a in actors) { %]
+        {title:"[%=a.name%]", field:"[%=a.name%]", headerSort:false, headerVertical:true},
+        [% } %]
+    ],
+  });
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+{
+    "type": "uml",
+    "name": "CustomerJourney",
+    "metamodel": {
+        "type": "uml",
+        "lang": "uml2.5",
+    	"name": "UMLCJMProfile",
+    	"namespace": "http://www.eclipse.org/uml2/5.0.0/UML",
+    	"website": "https://www.eclipse.org/modeling/mdt/?project=uml2",
+    	"gitrepo": null,
+    	"emfMetamodel": null,
+		"emfMetamodelData": null,
+    	"umlProfile": true,
+    	"umlProfileUri": "http://CustomerJourney",
+    	"umlProfilePackageQualifiedClassName": "CustomerJourney.CustomerJourneyPackage",
+    	"umlProfileJar": "CustomerJourney.jar",
+    	"umlProfileModel": "CustomerJourney.profile.uml"
+    },
+    "generators": [
+    	{ 
+    		"name": "CustomerJourneyMap",
+    		"artifactPreviewUrl": "https://scdt-facility-uml-customerjourney.surge.sh/Richard_JourneyMap.html"
+        }
+    ],
+    "website": null,
+    "gitrepo": null,
+    "publisher": "Vorachet Jaroensawas <vorachet@script-conductive.com>"
+}

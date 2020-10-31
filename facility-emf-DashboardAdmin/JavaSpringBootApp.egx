@@ -1,0 +1,119 @@
+pre {
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	ARTIFACT_DIR = "/Users/vorachet/Desktop";
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+}
+
+rule EclipseProject 
+  transform p : Project { 
+  parameters : Map {
+		"packageName" = p.packageName
+  }
+  template : "./templates/JavaSpringBootApp/eclipseProject.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/.project"
+}
+
+rule EclipseClasspath 
+  transform p : Project { 
+  parameters : Map {
+		"packageName" = p.packageName
+  }
+  template : "./templates/JavaSpringBootApp/classpath.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/.classpath"
+}
+
+rule MvnPOM 
+  transform p : Project { 
+  parameters : Map {
+		"packageName" = p.packageName
+  }
+  template : "./templates/JavaSpringBootApp/mvnpom.xml.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/pom.xml"
+}
+
+rule SpringResource 
+  transform p : Project { 
+  parameters : Map {
+		"project" = p
+  }
+  template : "./templates/JavaSpringBootApp/application.yml.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/resources/application.yml"
+}
+
+rule App 
+  transform p : Project { 
+  parameters : Map {
+		"packageName" = p.packageName
+  }
+  template : "./templates/JavaSpringBootApp/app.java.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/java/" + p.packageName.javaPkgAsDir() + "/" + p.name + "App.java"
+}
+
+rule HealthCheckController 
+  transform p : Project { 
+  parameters : Map {
+		"project" = p
+  }
+  template : "./templates/JavaSpringBootApp/healthcheckcontroller.java.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/java/" + p.packageName.javaPkgAsDir() + "/HealthCheckController.java"
+}
+
+rule MongoConfig 
+  transform p : Project { 
+  parameters : Map {
+		"project" = p
+  }
+  template : "./templates/JavaSpringBootApp/mongoconfig.java.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/java/" + p.packageName.javaPkgAsDir() + "/MongoConfig.java"
+}
+
+rule HealthCheckController 
+  transform p : Project { 
+  parameters : Map {
+		"project" = p
+  }
+  template : "./templates/JavaSpringBootApp/healthcheckcontroller.java.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/java/" + p.packageName.javaPkgAsDir() + "/HealthCheckController.java"
+}
+
+
+rule Helper 
+  transform p : Project { 
+  parameters : Map {
+		"packageName" = p.packageName
+  }
+  template : "./templates/JavaSpringBootApp/helper.java.egl"  
+  target : ARTIFACT_DIR + "/" + p.name + "/src/main/java/" + p.packageName.javaPkgAsDir() + "/resources/Helper.java"
+}
+
+rule Models 
+  transform schema : Schema { 
+  parameters : Map {
+		"packageName" = schema.eContainer.packageName
+  }
+  template : "./templates/JavaSpringBootApp/model.java.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/src/main/java/" + schema.eContainer.packageName.javaPkgAsDir() + "/resources/" + schema.name + ".java"
+}
+
+rule Controllers 
+  transform schema : Schema { 
+  parameters : Map {
+		"packageName" = schema.eContainer.packageName
+  }
+  template : "./templates/JavaSpringBootApp/controller.java.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/src/main/java/" + schema.eContainer.packageName.javaPkgAsDir() + "/resources/" + schema.name + "Controller.java"
+}
+
+rule Repositories
+  transform schema : Schema { 
+  parameters : Map {
+		"packageName" = schema.eContainer.packageName
+  }
+  template : "./templates/JavaSpringBootApp/repository.java.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/src/main/java/" + schema.eContainer.packageName.javaPkgAsDir() + "/resources/" + schema.name + "Repository.java"
+}
+
+function String javaPkgAsDir() {
+  return self.replace("\\.","/");
+}

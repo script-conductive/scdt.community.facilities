@@ -1,0 +1,36 @@
+package [%=packageName%].resources;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.data.domain.Page;
+
+public class Helper {
+
+  private static Map<String, Object> init() {
+    Map<String, Object> r = new HashMap<String, Object>();
+    r.put("timestamp", new java.util.Date());
+    r.put("status", 200);
+    r.put("success", true);
+    r.put("error", null);
+    r.put("status", 200);
+    return r;
+  }
+
+  public static Map<String, Object> initResponseObject() {
+    Map<String, Object> r = init();
+    return r;
+  }
+
+  public static <T> Map<String, Object> initResponseObject(Page<T> pages) {
+    Map<String, Object> r = init();
+    r.put("data", pages.toList());
+    return r;
+  }
+
+  public static <T> Map<String, Object>  initResponseObject(T entity) {
+    Map<String, Object> r = init();
+    r.put("data", entity);
+    return r;
+  }
+}

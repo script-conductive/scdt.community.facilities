@@ -1,0 +1,93 @@
+@namespace(uri="http://WebDocumentation", prefix="")
+package WebDocumentation;
+
+class Project {
+  id attr String name;
+  val Concept[*] Concepts;
+}
+
+abstract class Concept {
+  id attr String name;
+  attr String label;
+}
+
+class Website extends Concept {
+  attr String visitLinkLabel;
+  attr String maintainer;
+  attr String about;
+  val Page[*] pages;
+}
+
+class Page extends Concept {
+  attr boolean isDefaultPage;
+  attr String about;
+  val HtmlElement[*] elements;
+}
+
+class HtmlElement extends Concept {
+}
+
+class H1 extends HtmlElement {
+}
+
+class H2 extends HtmlElement {
+}
+
+class H3 extends HtmlElement {
+}
+
+class H4 extends HtmlElement {
+}
+
+class H5 extends HtmlElement {
+}
+
+class H6 extends HtmlElement {
+}
+
+class Text extends HtmlElement {
+}
+
+class Code extends HtmlElement {
+}
+
+class PageLink extends HtmlElement {
+  ref Page page;
+}
+  
+class MiniImage extends HtmlElement {
+  attr String src;
+}
+
+class TinyImage extends HtmlElement {
+  attr String src;
+}
+
+class SmallImage extends HtmlElement {
+  attr String src;
+}
+
+class MediumImage extends HtmlElement {
+  attr String src;
+}
+
+class LargeImage extends HtmlElement {
+  attr String src;
+}
+
+class BigImage extends HtmlElement {
+  attr String src;
+}
+
+class Link extends HtmlElement {
+  attr String link;
+}
+
+class LinkButton extends HtmlElement {
+  attr String link;
+}
+
+class PageLinkButton extends HtmlElement {
+   ref Page page;
+}
+

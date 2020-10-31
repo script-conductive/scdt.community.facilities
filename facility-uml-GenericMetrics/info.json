@@ -1,0 +1,32 @@
+{
+    "type": "uml",
+    "name": "GenericMetrics",
+    "metamodel": {
+        "type": "uml",
+        "lang": "uml2.5",
+    	"name": "GenericMetrics",
+    	"namespace": "http://www.eclipse.org/uml2/5.0.0/UML",
+    	"website": "https://www.eclipse.org/modeling/mdt/?project=uml2",
+    	"gitrepo": "Not required",
+    	"emfMetamodel": null,
+		"emfMetamodelData": null,
+    	"umlProfile": true,
+    	"umlProfileUri": null,
+    	"umlProfilePackageQualifiedClassName": null,
+    	"umlProfileJar": null,
+    	"umlProfileModel": null
+    },
+    "generators": [
+    	{ 
+    		"name": "UseCaseJSON",
+    		"artifactPreviewUrl": "https://scdt-facility-uml-genericmetrics.surge.sh/UMLModelExampleUseCase.json"
+        },
+        { 
+    		"name": "UseCaseTable",
+    		"artifactPreviewUrl": "https://scdt-facility-uml-genericmetrics.surge.sh/UMLModelExampleUseCaseTable.html"
+    	}
+    ],
+    "website": "https://github.com/script-conductive/facility-uml-metrics",
+    "gitrepo": "git@github.com:script-conductive/facility-uml-metrics.git",
+    "publisher": "Vorachet Jaroensawas <vorachet@script-conductive.com>"
+}

@@ -1,0 +1,28 @@
+package [%=packageName%].resources;
+
+import java.util.List;
+
+import org.bson.types.ObjectId;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface [%=schema.name%]Repository extends MongoRepository<[%=schema.name%], String> {
+  [% for (attr in schema.attrs.select(o|o.name <> "id" and o.richContent <> true)) { %]
+  [%
+    var type: String = "";
+    if (attr.type = "String") { type = "String"; }
+    if (attr.type = "Number") { type = "double"; }
+    if (attr.type = "Boolean") { type = "boolean"; }
+    if (attr.type = "Date") { type = "java.util.Date"; }
+    if (attr.enumType <> null) { type = "String"; }
+  %]
+  List<[%=schema.name%]> findBy[%=attr.name.firstToUpperCase()%]([%=type%] [%=attr.name%]);
+  Page<[%=schema.name%]> findBy[%=attr.name.firstToUpperCase()%]([%=type%] [%=attr.name%], Pageable pageable);
+  [% }%]
+  [% for (_schema in schema.linkedSchemas) { %]
+  List<[%=schema.name%]> findBy[%=_schema.name.firstToUpperCase()%](ObjectId [%=_schema.name%]);
+  Page<[%=schema.name%]> findBy[%=_schema.name.firstToUpperCase()%](ObjectId [%=_schema.name%], Pageable pageable);
+  [%}%]
+}

@@ -1,0 +1,79 @@
+{
+    "usecases": [
+        [% for(uc in usecases) { %]
+        {
+            "oid": "[%=uc.id%]",
+            "name": "[%=uc.name%]",
+            "generalization": [
+            [% for(g in uc.generalization) { %]
+               {
+                "oid": "[%=g.general.id%]",
+            	"name": "[%=g.general.name%]"
+               }[%if(hasMore){%],[%}%]
+               
+            [% } %]
+            ],
+            "includes": [
+                [% for(includeCase in uc.include) { %]
+                {
+                    "oid": "[%=includeCase.addition.id%]",
+                    "name": "[%=includeCase.addition.name%]"
+                }[%if(hasMore){%],[%}%]
+      
+                [% } %]
+            ],
+            "extends": [
+                [% for(extendCase in uc.extend) { %]
+                {
+                    "oid": "[%=extendCase.extendedCase.id%]",
+                    "name": "[%=extendCase.extendedCase.name%]"
+                }[%if(hasMore){%],[%}%]
+      
+                [% } %]
+            ]
+        }[%if(hasMore){%],[%}%]
+  
+        [% } %]
+    ],
+    "actors": [
+        [% for(actor in actors) { %]
+        {
+            "oid": "[%=actor.id%]",
+            "name": "[%=actor.name%]",
+            "generalization": [
+            [% for(g in actor.generalization) { %]
+               {
+                "oid": "[%=g.general.id%]",
+            	"name": "[%=g.general.name%]"
+               }[%if(hasMore){%],[%}%]
+               
+            [% } %]
+            ]
+        }[%if(hasMore){%],[%}%]
+  
+        [% } %]
+    ],
+    "associations": [
+        [% for(ass in associations.select(o|o.type.name = "Association")) { %]
+        {
+            "oid": "[%=ass.id%]",
+            "name": "[%=ass.name%]",
+            "ownedEnds": [
+                [% for(end in ass.ownedEnd.select(o|o.type.eClass.name = "Actor")) { %]
+                {
+                    "oid": "[%=end.type.id%]",
+                    "name": "[%=end.type.name%]"
+                },
+                [% } %]
+                [% for(end in ass.ownedEnd.select(o|o.type.eClass.name = "UseCase")) { %]
+                {
+                    "oid": "[%=end.type.id%]",
+                    "name": "[%=end.type.name%]"
+                }
+                [% } %]
+            ]
+        }[%if(hasMore){%],[%}%]
+ 
+        [% } %]
+    ]
+}

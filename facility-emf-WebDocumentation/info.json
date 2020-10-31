@@ -1,0 +1,35 @@
+{
+    "type": "emf",
+    "name": "WebDocumentation",
+    "metamodel": {
+        "type": "emf",
+        "lang": "emfatic",
+    	"name": "WebDocumentation",
+    	"namespace": "https://github.com/script-conductive/metamodel-emf-WebDocumentation",
+    	"emfMetamodel": "metamodel.emf",
+		"emfMetamodelData": null,
+    	"umlProfile": false,
+    	"umlProfileUri": null,
+    	"umlProfilePackageQualifiedClassName": null,
+    	"umlProfileJar": null,
+    	"website": "https://github.com/script-conductive/metamodel-emf-WebDocumentation",
+    	"gitrepo": "git@github.com:script-conductive/metamodel-emf-WebDocumentation.git"
+    },
+    "generators": [
+    	{ 
+    		"name": "WebDocumentation",
+    		"exampleModel": "WebDocumentation.flexmi",
+			"exampleModelData": null,
+    		"artifactPreviewUrl": "https://scdt-facility-emf-webdocumentation.surge.sh/WebDocumentation/index.html"
+    	},
+    	{ 
+    		"name": "WebPresentation",
+    		"exampleModel": "WebPresentation.flexmi",
+			"exampleModelData": null,
+    		"artifactPreviewUrl": "https://scdt-facility-emf-webdocumentation.surge.sh/WebPresentation/index.html"
+    	}
+    ],
+    "website": "https://github.com/script-conductive/facility-emf-WebDocumentation",
+    "gitrepo": "git@github.com:script-conductive/facility-emf-WebDocumentation.git",
+    "publisher": "Vorachet Jaroensawas <vorachet@script-conductive.com>"
+}

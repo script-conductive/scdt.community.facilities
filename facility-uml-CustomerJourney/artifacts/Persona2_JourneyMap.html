@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+<title>Persona2's Journey</title>
+<link href="tabulator-4.8.2.css" rel="stylesheet">
+<script src="tabulator-4.8.2.js"></script>
+<style type="text/css">
+* {
+  font-family: "Arial";
+}
+body {
+  margin:0;
+  padding: 20px;
+}
+.table {
+  margin-bottom: 20px;
+}
+.header img {
+  float: left;
+  width: 35px;
+  margin-right: 10px;
+}
+.header h1  {
+  position: relative;
+  top: 5px;
+  font-size: 20px;
+}
+</style>
+<script>
+const persona = {
+  name: "Persona2"
+}
+
+const expectedActorsMap = {
+  "_czbZsBmYEeuxgcy6_kiY6g": {
+     oid: "_czbZsBmYEeuxgcy6_kiY6g",
+     name: "ExpectedQuality2",
+     generalization: [
+     ]
+   }  
+};
+
+const stageUseCases = [
+  {oid: "_wNGfYBkwEeuxgcy6_kiY6g", name: "StageA"},
+    {oid: "_XMWiQBkxEeuxgcy6_kiY6g", name: "StageB"},
+];
+
+const stageUseCasesOidMap = stageUseCases.map((s) => {
+ return s.oid
+});
+
+
+const stagesMapTemp = {
+  "_RkPOwBknEeuxgcy6_kiY6g": {
+    oid: "_RkPOwBknEeuxgcy6_kiY6g",
+    name: "Stage1",
+    steps: [
+        {oid: "_lYHo8BknEeuxgcy6_kiY6g", name: "Step1"}, 
+    ]
+  },  
+  "_wNGfYBkwEeuxgcy6_kiY6g": {
+    oid: "_wNGfYBkwEeuxgcy6_kiY6g",
+    name: "StageA",
+    steps: [
+        {oid: "_s0GGwBkxEeuxgcy6_kiY6g", name: "StepA1"},
+        {oid: "_DocBQBkyEeuxgcy6_kiY6g", name: "StepA2"}, 
+    ]
+  },  
+  "_XMWiQBkxEeuxgcy6_kiY6g": {
+    oid: "_XMWiQBkxEeuxgcy6_kiY6g",
+    name: "StageB",
+    steps: [
+        {oid: "_BNMG0BkyEeuxgcy6_kiY6g", name: "StepB1"}, 
+    ]
+  }  
+};
+
+let stagesMap = {};
+for (const [stageOid, stageObj] of Object.entries(stagesMapTemp)) {
+  if (stageUseCasesOidMap.includes(stageOid)) {
+    stagesMap[stageOid] = stageObj;
+  }
+}
+console.log("stagesMap", stagesMap);
+
+let relevantStagesNameMap = [];
+for (const [stageOid, stageObj] of Object.entries(stagesMapTemp)) {
+  if (stageUseCasesOidMap.includes(stageOid)) {
+    relevantStagesNameMap.push(stageObj.name)
+  }
+}
+console.log("relevantStagesNameMap", relevantStagesNameMap);
+
+let irrelevantStagesNameMap = [];
+for (const [stageOid, stageObj] of Object.entries(stagesMapTemp)) {
+  if (!stageUseCasesOidMap.includes(stageOid)) {
+    irrelevantStagesNameMap.push(stageObj.name)
+  }
+}
+
+console.log("irrelevantStagesNameMap", irrelevantStagesNameMap);
+
+const stepsMap = {
+  "_lYHo8BknEeuxgcy6_kiY6g": {
+    oid: "_lYHo8BknEeuxgcy6_kiY6g",
+    name: "Step1",
+    usedTimeValue: "0.0",
+    usedTimeUnit: "Second",
+    serviceResources: [
+      {oid: "_7vqoYBmYEeuxgcy6_kiY6g", name: "ServiceResource1"}      
+    ]
+  },  
+  "_s0GGwBkxEeuxgcy6_kiY6g": {
+    oid: "_s0GGwBkxEeuxgcy6_kiY6g",
+    name: "StepA1",
+    usedTimeValue: "0.0",
+    usedTimeUnit: "Second",
+    serviceResources: [
+    ]
+  },  
+  "_BNMG0BkyEeuxgcy6_kiY6g": {
+    oid: "_BNMG0BkyEeuxgcy6_kiY6g",
+    name: "StepB1",
+    usedTimeValue: "0.0",
+    usedTimeUnit: "Second",
+    serviceResources: [
+      {oid: "_KoHhcBk4Eeuxgcy6_kiY6g", name: "ServiceResource2"}      
+    ]
+  },  
+  "_DocBQBkyEeuxgcy6_kiY6g": {
+    oid: "_DocBQBkyEeuxgcy6_kiY6g",
+    name: "StepA2",
+    usedTimeValue: "0.0",
+    usedTimeUnit: "Second",
+    serviceResources: [
+      {oid: "_KoHhcBk4Eeuxgcy6_kiY6g", name: "ServiceResource2"}      
+    ]
+  }  
+};
+
+const serviceResourcesMap = {
+  "_KoHhcBk4Eeuxgcy6_kiY6g": {
+    oid: "_KoHhcBk4Eeuxgcy6_kiY6g",
+    resourceType: "«Undefined»",
+  },  
+  "_7vqoYBmYEeuxgcy6_kiY6g": {
+    oid: "_7vqoYBmYEeuxgcy6_kiY6g",
+    resourceType: "«Undefined»",
+  }  
+};
+
+const stepTouchpointMap = {
+  "_s0GGwBkxEeuxgcy6_kiY6g": {oid: "_24xQsBkxEeuxgcy6_kiY6g", name: "Touchpoint1"},  "_BNMG0BkyEeuxgcy6_kiY6g": {oid: "_24xQsBkxEeuxgcy6_kiY6g", name: "Touchpoint1"},  "_DocBQBkyEeuxgcy6_kiY6g": {oid: "_24xQsBkxEeuxgcy6_kiY6g", name: "Touchpoint1"}};
+
+const touchpoints = [
+  {oid: "_24xQsBkxEeuxgcy6_kiY6g", name: "Touchpoint1", resourceType: "«Undefined»",
+   usecases: [
+     {oid: "_s0GGwBkxEeuxgcy6_kiY6g", name: "StepA1"},    
+     {oid: "_BNMG0BkyEeuxgcy6_kiY6g", name: "StepB1"},    
+     {oid: "_DocBQBkyEeuxgcy6_kiY6g", name: "StepA2"}    
+   ]}  
+];
+
+const touchpointsMap = {
+  "_24xQsBkxEeuxgcy6_kiY6g": {oid: "_24xQsBkxEeuxgcy6_kiY6g", name: "Touchpoint1", resourceType: "«Undefined»",}  
+};
+
+</script>
+</head>
+<body>
+
+<div class="menu">
+<a href="Persona1_JourneyMap.html">Persona1</a> | <a href="Persona2_JourneyMap.html">Persona2</a></div>
+  
+<div class="header">
+  <a href="https://www.script-conductive.com" target="_blank">
+    <img src="https://cdn.script-conductive.com/logos/logo.png" alt="logo" />
+  </a>
+  <h1>SCDT</h1>
+</div>
+<h1>Persona2's Journey Map</h1>
+
+<div id="JourneyMap" class="table"></div>
+
+<h1>Expectation</h1>
+<ul>
+<li>
+  ExpectedQuality2 
+</li>
+</ul>
+
+<h1>Touchpoint Detail</h1>
+<div id="TouchpointDetail" class="table"></div>
+
+<script>
+const height = "300px";
+const layout = "fitColumns";  // fitColumns, fitDataStretch, fitDataTable
+
+function getStepUsedTime(step) {
+  return step && step.usedTimeValue > 0  ? step.usedTimeValue + " " + step.usedTimeUnit : "";
+}
+
+function getStepCurrentEmotionScore(step) {
+  return step && step.currentEmotionScore ? step.currentEmotionScore : "";
+}
+
+function getStepExtraInfo(step) {
+ const usedTime = getStepUsedTime(step);
+ const currentEmotionScore = getStepCurrentEmotionScore(step);
+ if ( (usedTime.length + currentEmotionScore.length) == 0) {
+   return "";
+ } else {
+   return "<sup>(" + (usedTime) + (currentEmotionScore) +")</sup>";
+ }
+}
+
+function getStepTouchpoint(stepOid) {
+  return stepTouchpointMap.hasOwnProperty(stepOid) ? stepTouchpointMap[stepOid] : {
+    oid: "",
+    name: ""
+  }
+}
+function getTouchpoint(tpOid) {
+  return touchpointsMap.hasOwnProperty(tpOid) ? touchpointsMap[tpOid] : {
+    oid: "UndefinedAsset",
+    name: "",
+    resourceType: ""
+  }
+}
+let journeyMapTableData = [];
+for (const [stageKey, stageObj] of Object.entries(stagesMap)) {
+  if (stageUseCases.filter((u)=> u.oid == stageObj.oid).length > 0) {
+    stageObj.steps.forEach((s) => {
+      journeyMapTableData.push({
+      id: s.oid,
+      type: "Step",
+      stepObject: stepsMap[s.oid],
+      touchpointObject: stepTouchpointMap[s.oid],
+      touchpoint: getTouchpoint(getStepTouchpoint(s.oid).oid).resourceType + " <b>" + getStepTouchpoint(s.oid).name + "</b>",
+      serviceResource: stepsMap[s.oid] ? stepsMap[s.oid].serviceResources.map((r) => { 
+         if (serviceResourcesMap[r.oid]) {
+           return serviceResourcesMap[r.oid].resourceType + " <b>" + r.name + "</b>";
+         } else {
+           return "";
+         } 
+      }).join("\n") : "",
+      Stage1: 
+        relevantStagesNameMap.includes("Stage1") == true && stagesMap["_RkPOwBknEeuxgcy6_kiY6g"].steps.filter(o => o.oid == s.oid).length > 0 
+         ? "<b>" + (stepsMap[s.oid] ? stepsMap[s.oid].name : "") + "</b> " + getStepExtraInfo(stepsMap[s.oid])
+         : "",      
+      StageA: 
+        relevantStagesNameMap.includes("StageA") == true && stagesMap["_wNGfYBkwEeuxgcy6_kiY6g"].steps.filter(o => o.oid == s.oid).length > 0 
+         ? "<b>" + (stepsMap[s.oid] ? stepsMap[s.oid].name : "") + "</b> " + getStepExtraInfo(stepsMap[s.oid])
+         : "",      
+      StageB: 
+        relevantStagesNameMap.includes("StageB") == true && stagesMap["_XMWiQBkxEeuxgcy6_kiY6g"].steps.filter(o => o.oid == s.oid).length > 0 
+         ? "<b>" + (stepsMap[s.oid] ? stepsMap[s.oid].name : "") + "</b> " + getStepExtraInfo(stepsMap[s.oid])
+         : ""      
+      });
+      
+      for (const [dataKey, dataObj] of Object.entries(journeyMapTableData)) {
+        if (irrelevantStagesNameMap.includes(dataKey)) {
+          delete journeyMapTableData[dataKey];
+        }
+      }
+      
+      console.log(journeyMapTableData)
+    });
+  }
+}
+   
+new Tabulator("#JourneyMap", {
+  height: height,
+  layout: layout,
+  data: journeyMapTableData,
+  columns:[
+  	{title:"Enabling Resource", field:"serviceResource", width:250, hozAlign:"right", formatter: "html"},
+  	{title:"Touchpoint", field:"touchpoint", width:140, hozAlign:"right", formatter: "html"},
+    {
+      title:"Persona2's Journey Stages",
+      columns:  stageUseCases.map((uc) => {
+        return {
+          title: uc.name,
+          field: uc.name,
+          hozAlign: "left",
+          headerSort: false,
+          headerVertical: false,
+          formatter: "html",
+          formatterParams: {
+            wrap: true
+          }
+         } 
+      })
+    }
+  ]
+});
+
+const touchpointDetailTableData = [];
+touchpoints.forEach((tp) => {
+  touchpointDetailTableData.push({
+    id: tp.oid,
+    type: "Touchpoint",
+    "Touchpoint1":
+      tp.name == "Touchpoint1" ?
+      tp.usecases.map((u) => {
+        return "<b>" + u.name + "</b>"  
+      }).join("<br>") : ""      
+  });
+});
+
+new Tabulator("#TouchpointDetail", {
+  height: height,
+  layout: layout,
+  data: touchpointDetailTableData,
+  columns:[
+    {
+      title:"Touchpoint & Case Allocation",
+      columns:  touchpoints.map((tp) => {
+        return {
+          title: tp.name,
+          field: tp.name,
+          hozAlign: "left",
+          headerSort: false,
+          headerVertical: false,
+          formatter: "html",
+          formatterParams: {
+            wrap: true
+          }
+         } 
+      })
+    }
+  ]
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+pre {
+	var modelroot=Package.all.select(c|c.type.name="Model").first();
+	var modelName : String = modelroot.name;
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+}
+
+rule UseCasesMetric transform m : Model { 
+	guard : m.name = modelName
+	parameters : Map {
+    	"usecases" = UseCase.allInstances(),
+    	"actors" = Actor.allInstances(),
+    	"associations" = Association.allInstances()
+  	}
+	template : "./templates/UseCaseTable.egl"  
+	target : ARTIFACT_DIR + "/" + modelName + "UseCaseTable.html"
+}
+
+rule Css transform m : Model { 
+	guard : m.name = modelName
+	template : "./templates/helpers/tabulator-4.8.2.css.egl"  
+	target : ARTIFACT_DIR + "/" + modelName + "UseCaseTable.css"
+}
+
+rule Js transform m : Model { 
+	guard : m.name = modelName
+	template : "./templates/helpers/tabulator-4.8.2.js.egl"  
+	target : ARTIFACT_DIR + "/" + modelName + "UseCaseTable.js"
+}

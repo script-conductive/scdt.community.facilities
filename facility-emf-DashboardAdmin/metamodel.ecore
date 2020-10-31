@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dashboard" nsURI="http://DashboardAdmin" nsPrefix="">
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="copyrights" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
+        eType="#//Schema" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dashboard" eType="#//Dashboard"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enums" upperBound="-1"
+        eType="#//Enum" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dashboard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mongoUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
+        eType="#//Schema"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Named" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="collectionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Schema" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containsRichContent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containsImage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" upperBound="-1"
+        eType="#//Attr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkedSchemas" upperBound="-1"
+        eType="#//ObjectAttr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enum" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attr" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumType" eType="#//Enum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="richContent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectAttr" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#//Schema"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectLink" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectLinkArray" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+</ecore:EPackage>

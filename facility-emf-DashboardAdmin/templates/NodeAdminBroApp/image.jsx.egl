@@ -1,0 +1,11 @@
+import React from "react";
+
+const Image = (props) => {
+  return (
+    <div>
+        { props.record.params.image ? <img src={props.record.params.image} alt="image" style={{width: '50px'}} /> : null }
+    </div>
+  );
+};
+
+export default Image;

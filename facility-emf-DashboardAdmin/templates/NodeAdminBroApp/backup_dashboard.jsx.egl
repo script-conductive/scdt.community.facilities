@@ -1,0 +1,27 @@
+import React from "react";
+import { ApiClient } from "admin-bro";
+const api = new ApiClient();
+api.resourceAction({ resourceId: 'Dashboard', actionName: 'list' }).then(results => {
+  console.log(results.data.records);
+})
+
+import { Box } from "admin-bro";
+
+const Dashboard = (props) => {
+  return (
+    <Box style={{ padding: "50px", fontSize: "20px" }}>
+      <h1>Hi</h1>
+      <Box style={{width: '100%',height: '100%'}}>
+        <iframe
+          src="https://2gen-services.pbapp.net:3001/embed/dashboard/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJleHAiOjE2MjY5MTY0MTQsImlhdCI6MTU5NjE1ODAxM30.XPbOOjzsFeOhMbbgC9nJxwlUuOKelxPVPMkE2pL6wNw#bordered=true&theme=night&titled=true"
+          frameborder="0"
+          width="100%"
+          height="100%"
+          allowtransparency
+      ></iframe>
+      </Box>
+    </Box>
+  );
+};
+
+export default Dashboard;

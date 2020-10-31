@@ -1,0 +1,87 @@
+pre {
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	ARTIFACT_DIR = "/Users/vorachet/Desktop";
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
+}
+
+rule Apps 
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/index.js.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/index.js"
+}
+
+rule Models 
+  transform schema : Schema { 
+  parameters : Map {
+    "project" = schema.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/models.js.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/node/models/" + schema.name + ".js"
+}
+
+rule Schemas 
+  transform schema : Schema { 
+  parameters : Map {
+    "project" = schema.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/schemas.js.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/node/models/" + schema.name + "Schema.js"
+}
+
+rule ResourceSettings 
+  transform schema : Schema { 
+  parameters : Map {
+    "project" = schema.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/resources.js.egl"  
+  target : ARTIFACT_DIR + "/" + schema.eContainer.name + "/node/resources/" + schema.name + ".js"
+}
+
+rule NPMPackageFile
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/package.json.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/package.json"
+}
+
+rule DashboardReactPage 
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/dashboard.jsx.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/dashboard.jsx"
+}
+
+rule ImageReactPage 
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/image.jsx.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/image.jsx"
+}
+
+rule BackgroundImageReactPage 
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/backgroundImage.jsx.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/backgroundImage.jsx"
+}
+
+rule GITIGNORE 
+  transform dashboard : Dashboard { 
+  parameters : Map {
+    "project" = dashboard.eContainer
+  }
+  template : "./templates/NodeAdminBroApp/gitignore.egl"  
+  target : ARTIFACT_DIR + "/" + dashboard.eContainer.name + "/node/.gitignore"
+}

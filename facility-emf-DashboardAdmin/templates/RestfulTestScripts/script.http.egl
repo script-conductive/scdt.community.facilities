@@ -1,0 +1,35 @@
+@hostname = [%=apiBaseURL%]
+@ContentType = application/json
+###
+# @name /
+GET {{hostname}}/ HTTP/1.1
+
+####### [%=schema.name%] #######
+
+################
+# @name GET[%=schema.name%]List
+GET {{hostname}}/[%=schema.name%]List?page=0&size=10 HTTP/1.1
+Content-type: @ContentType
+
+################
+# @name GET[%=schema.name%]
+GET {{hostname}}/[%=schema.name%]/{ID} HTTP/1.1
+Content-type: @ContentType
+
+[% for (attr in schema.attrs) { %]
+################
+# @name GET[%=schema.name%]ListBy[%=attr.name.firstToUpperCase()%]
+GET {{hostname}}/[%=schema.name%]ListBy[%=attr.name.firstToUpperCase()%]?[%=attr.name%]=DATA&page=0&size=10 HTTP/1.1
+Content-type: @ContentType
+
+[% }%]
+[% for (_schema in schema.linkedSchemas) { %]
+################
+# @name GET[%=schema.name%]ListBy[%=_schema.schema.name%]
+GET {{hostname}}/[%=schema.name%]ListBy[%=_schema.schema.name%]?[%=_schema.name%]=DATA&page=0&size=10 HTTP/1.1
+Content-type: @ContentType
+
+[%}%]
+
+
+

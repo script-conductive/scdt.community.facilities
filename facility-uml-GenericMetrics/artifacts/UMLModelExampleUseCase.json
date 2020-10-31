@@ -1,0 +1,76 @@
+{
+    "usecases": [
+        {
+            "oid": "_kjkBIBs4Eeuo2ubwHax2mw",
+            "name": "UseCase1",
+            "generalization": [
+            ],
+            "includes": [
+                {
+                    "oid": "_lXfYcBs4Eeuo2ubwHax2mw",
+                    "name": "UseCase2"
+                }      
+            ],
+            "extends": [
+            ]
+        },  
+        {
+            "oid": "_k_kAoBs4Eeuo2ubwHax2mw",
+            "name": "UseCase3",
+            "generalization": [
+            ],
+            "includes": [
+            ],
+            "extends": [
+                {
+                    "oid": "_kjkBIBs4Eeuo2ubwHax2mw",
+                    "name": "UseCase1"
+                }      
+            ]
+        },  
+        {
+            "oid": "_lXfYcBs4Eeuo2ubwHax2mw",
+            "name": "UseCase2",
+            "generalization": [
+            ],
+            "includes": [
+            ],
+            "extends": [
+            ]
+        }  
+    ],
+    "actors": [
+        {
+            "oid": "_kKINcBs4Eeuo2ubwHax2mw",
+            "name": "Actor1",
+            "generalization": [
+               {
+                "oid": "_q0Nf0Bs4Eeuo2ubwHax2mw",
+            	"name": "Actor0"
+               }               
+            ]
+        },  
+        {
+            "oid": "_q0Nf0Bs4Eeuo2ubwHax2mw",
+            "name": "Actor0",
+            "generalization": [
+            ]
+        }  
+    ],
+    "associations": [
+        {
+            "oid": "_p875kBs4Eeuo2ubwHax2mw",
+            "name": "",
+            "ownedEnds": [
+                {
+                    "oid": "_kKINcBs4Eeuo2ubwHax2mw",
+                    "name": "Actor1"
+                },
+                {
+                    "oid": "_kjkBIBs4Eeuo2ubwHax2mw",
+                    "name": "UseCase1"
+                }
+            ]
+        } 
+    ]
+}

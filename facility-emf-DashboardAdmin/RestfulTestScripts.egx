@@ -1,0 +1,14 @@
+pre {
+  var apiBaseURL: String = "http://0.0.0.0:8080";
+  var baseMvnFolder: String = "/Users/vorachet/git.scdt/scdt.microservices";
+  var restTestGeneratedSrcFolder: String = baseMvnFolder + "/src/test/scripts";
+}
+
+rule RestTests
+  transform schema : Schema { 
+  parameters : Map {
+		"apiBaseURL" = apiBaseURL
+  }
+  template : "./templates/RestfulTestScripts/script.http.egl"  
+  target : restTestGeneratedSrcFolder + "/" + schema.name + ".http"
+}

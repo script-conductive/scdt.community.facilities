@@ -1,0 +1,79 @@
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>[%=page.label%]</title>
+	<link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <style>
+	.main.menu {
+		border: none;
+ 	}
+    </style>
+</head>
+<body>
+
+<div class="ui borderless main menu stackable">
+  <div class="ui text container">
+    <a class="item" href="index.html"><h2>[%=page.eContainer.label%]</h2></a>
+    <div class="ui simple dropdown item">
+       Pages
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        [% for (page in page.eContainer.pages) { %]<a class="item" href="[%=page.name%].html">[%=page.label%]</a>[% } %]
+      </div>
+    </div>
+    <div class="ui simple dropdown item">
+       Sections
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        [% for (h1 in page.elements.select(o|o.type.name = "H1")) { %]<a class="item" href="#[%=h1.label%]">[%=h1.label%]</a>[% } %]
+      </div>
+    </div>
+    <div class="right item">
+      [%= page.eContainer.maintainer %]
+    </div>
+  </div>
+</div>
+
+
+<div class="ui raised very padded text container segment stackable">
+
+<h1 class="ui center aligned icon header">
+  [%= page.label%]
+  <div class="sub header">[%= page.about%]</div>
+</h1>
+
+[% for (e in page.elements) { %]
+[% if (e.type.name == "H1") { %]<h1 id="[%=e.label%]" class="ui header"><a id="[%= e.label%]"></a>[%= e.label%]</h1>[% } %]
+[% if (e.type.name == "H2") { %]<h2 class="ui header">[%= e.label%]</h2>[% } %]
+[% if (e.type.name == "H3") { %]<h3 class="ui header">[%= e.label%]</h3>[% } %]
+[% if (e.type.name == "H4") { %]<h4 class="ui header">[%= e.label%]</h4>[% } %]
+[% if (e.type.name == "H5") { %]<h5 class="ui header">[%= e.label%]</h5>[% } %]
+[% if (e.type.name == "H6") { %]<h6 class="ui header">[%= e.label%]</h6>[% } %]
+[% if (e.type.name == "Text") { %]<p>[%= e.label%]</p>[% } %]
+[% if (e.type.name == "Code") { %]<p><code>[%= e.label%]</code></p>[% } %]
+[% if (e.type.name == "MiniImage") { %]<p><img class="ui mini image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "TinyImage") { %]<p><img class="ui tiny image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "SmallImage") { %]<p><img class="ui small image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "MediumImage") { %]<p><img class="ui medium image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "LargeImage") { %]<p><img class="ui large image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "BigImage") { %]<p><img class="ui big image" src="[%= e.src%]"/></p>[% } %]
+[% if (e.type.name == "Link") { %]<p><a href="[%= e.link%]">[%= e.label%]</a></p>[% } %]
+[% if (e.type.name == "PageLink") { %]<p><a href="[%= e.page.name%].html">[%= e.label%]</a></p>[% } %]
+[% if (e.type.name == "LinkButton") { %]<p><input type="button" class="ui button" onclick="location.href='[%= e.link%]';" value="[%= e.label%]" /></p>[% } %]
+[% if (e.type.name == "PageLinkButton") { %]<p><input type="button" class="ui button" onclick="location.href='[%= e.page.name%].html';" value="[%= e.label%]" /></p>[% } %]
+[% } %]
+</div>
+
+<script>
+$('.ui.dropdown').dropdown();
+</script>
+
+</body>
+</html>
