@@ -41,7 +41,7 @@
   </schema>
 
   <dashboard 
-    mongoUrl="mongodb://admin:H9ta5LRW47N8gdC4qmMBeXVjS3fcMFjzauKD@localhost:27017/Example1?serverSelectionTimeoutMS=5000&amp;connectTimeoutMS=10000&amp;authSource=admin&amp;authMechanism=SCRAM-SHA-256"
+    mongoUrl="mongodb://admin:password@localhost:27017/Example1?serverSelectionTimeoutMS=5000&amp;connectTimeoutMS=10000&amp;authSource=admin&amp;authMechanism=SCRAM-SHA-256"
     schemas="Customer, Product, Order"
   />
 
