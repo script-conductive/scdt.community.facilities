@@ -275,7 +275,7 @@ new Tabulator("#JourneyMap", {
   	{title:"Enabling Resource", field:"serviceResource", width:250, hozAlign:"right", formatter: "html"},
   	{title:"Touchpoint", field:"touchpoint", width:140, hozAlign:"right", formatter: "html"},
     {
-      title:"[%=p.base_Actor.name%]'s Journey Stages",
+      title:"Stages",
       columns:  stageUseCases.map((uc) => {
         return {
           title: uc.name,
