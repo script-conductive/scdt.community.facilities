@@ -247,7 +247,7 @@ for (const [stageKey, stageObj] of Object.entries(stagesMap)) {
          } 
       }).join("\n") : "",
       [%for(stage in Stage.all) {%]
-      [%=stage.base_UseCase.name%]: 
+      "[%=stage.base_UseCase.name%]": 
         relevantStagesNameMap.includes("[%=stage.base_UseCase.name%]") == true && stagesMap["[%=stage.base_UseCase.id%]"].steps.filter(o => o.oid == s.oid).length > 0 
          ? "<b>" + (stepsMap[s.oid] ? stepsMap[s.oid].name : "") + "</b> " + getStepExtraInfo(stepsMap[s.oid])
          : ""[%if(hasMore){%],[%}%]
