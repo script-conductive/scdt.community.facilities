@@ -1,0 +1,18 @@
+{
+    "type": "emf",
+    "name": "CustomerJouneyMap",
+    "metamodel": {
+        "type": "emf",
+        "lang": "emfatic",
+    	"name": "CustomerJouneyMap",
+    	"namespace": "cjm",
+    	"emfMetamodel": "metamodel.emf"
+    },
+    "generators": [
+    	{ 
+    		"name": "cjm",
+    		"exampleModel": "modelExamples.flexmi"
+        }
+    ],
+    "publisher": "Vorachet Jaroensawas <vorachet@script-conductive.com>"
+}

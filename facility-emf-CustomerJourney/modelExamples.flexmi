@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?nsuri cjm?>
+
+<Project name="ModelExamples">
+
+  <!-- Personas -->
+  
+  <Persona name="p1" label="Moviegoer" minAge="15" maxAge="60"/>
+  
+  <Persona name="p2" label="Coffeeholic" minAge="15" maxAge="60"/>
+  
+  <!-- Touchpoints -->
+  
+  <Touchpoint name="tp1" label="Mobile App">
+    <Feature name="tp1.f1" label="Movie Tickets Online Booking And Showtimes"/>
+    <Feature name="tp1.f2" label="Seat Selection"/>
+    <Feature name="tp1.f3" label="Location Service"/>
+  </Touchpoint>
+  
+  <Touchpoint name="tp2" label="Movie Theater">
+    <Feature name="tp2.f1" label="Staff regular training"/>
+    <Feature name="tp2.f2" label="Environmental cleaning SOPs"/>
+  </Touchpoint>
+  
+  <Touchpoint name="tp3" label="Coffee Shop">
+    <Feature name="tp3.f1" label="Coffee shop environment design"/>
+  </Touchpoint>
+  
+  <!-- Journeys -->
+  
+  <Journey name="j1" label="Cinema Customer" persona="p1">
+    <Stage label="Decide">
+      <Step label="Looks up movies" features="tp1.f1" />
+      <Step label="Decides which movies to see and which theater to go to" features="tp1.f1"/>
+      <Step label="Buys ticket online" features="tp1.f1"/>
+    </Stage>
+    <Stage label="Travel">
+      <Step label="Drives to movie theater" features="tp1.f3"/>
+    </Stage>
+    <Stage label="Experience">
+      <Step label="Stands in line and buys popcorn" features="tp2.f1" valueExps="Friendly staff"/>
+      <Step label="Finds seat" features="tp1.f2" valueExps="Good seat" />
+      <Step label="Watches movie" features="tp1.f1" valueExps="great movie" />
+    </Stage>
+    <Stage label="Return">	
+      <Step label="Exits theater"/>
+      <Step label="Drives home"/>
+    </Stage>
+  </Journey>
+  
+  <Journey name="j2" label="Coffee Shop" persona="p2">
+    <Stage label="Enter">
+      <Step label="WalkIn" features="tp3.f1" valueExps="Aroma,Ambience" devalueExps="Loud, Cold"/>
+    </Stage>
+    <Stage label="Engage">
+      <Step label="Line"/>
+      <Step label="Order" devalueExps="Fake greeting, Impolite"/>
+      <Step label="Pay"/>
+      <Step label="Sit"/>
+      <Step label="Drink"/>
+      <Step label="Work"/>
+    </Stage>
+    <Stage label="Exit">
+      <Step label="Pack up"/>
+      <Step label="Leave"/>
+    </Stage>
+  </Journey>
+  
+</Project>  

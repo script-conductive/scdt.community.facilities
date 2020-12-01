@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="journey-title">
+  When 👤 [%=j.persona.label%] <small style="color: lightgray;">isA | experiences</small>  <a id="[%=j.name%]" href="jn_[%=j.name%].html">[%=j.label%]</a>
+</h1>
+<!-- Personas Profile -->
+<ul class="no-bullets">
+ [%if (j.persona.minAge <> null) {%]
+ <li>Age range: [%=j.persona.minAge%] - [%=j.persona.maxAge%]</li>
+ [%}%]
+</ul>
+<br>
+<button onclick="window.print()">Print this page</button>
+[%
+var touchpoints = new Set();
+var renderedTouchpoints = new Set();
+%]
+<!-- stages -->
+<div class="stages">
+<table class="journey-table">
+<tr>
+  [%
+  var count = 0;
+  for(stage in j.stages) {%]
+  <td valign="top" style="border-right: 1px dashed gray;padding: 5px;">
+    <h3 class="stage-title">[%=stage.label%]</h3>
+    <table class="journey-table">
+    <tr>
+      [%for(step in stage.steps) {%]
+      <td valign="top">
+        [%=count++%]. [%=step.label%]
+        <br>
+          <small class="touchpoint-title">
+          [%
+          for(f in step.features) {
+             renderedTouchpoints.add(f.eContainer);
+             touchpoints.add(f);
+          %]
+          [% if (renderedTouchpoints.select(o|o = f.eContainer).size <= 1) { %]
+          <a href="tp_[%=f.eContainer.name%].html">👋 [%=f.eContainer.label%]</a><br>
+          [% } %]
+          [%} %]
+          </small>
+      </td>
+       [%}%]
+    </tr>
+    <tr>
+       [%for(step in stage.steps) {%]
+       <td valign="top">
+         <small style="color: blue;">
+         [%for(vexp in step.valueExps) {%]<br>😊 [%=vexp%][%}%]
+          </small>
+          <small style="color: red;">
+          [%for(dvexp in step.devalueExps) {%]<br>😥 [%=dvexp%][%}%]
+          </small>
+         </td>
+        [%}%]
+    </tr>
+    </table>
+    <div class="review">
+    Reviewer: <br>
+    Date: <br>
+    </div>
+  </td>
+  [%}%]
+</tr>
+</table>
+</div>
+
+<div class="poweredby">
+<small>Model-based software engineering powered by SCDT 
+<a href="https://script-conductive.com"><img src="https://cdn.script-conductive.com/logos/logo.png"/></a>
+</small>
+</div>
+
+<p>
+Specified by developers: 
+<hr>
+👋 = Touchpoint, 😊 = Value, 😥 = Devalue
+</p>
+
+</body>
+</html>

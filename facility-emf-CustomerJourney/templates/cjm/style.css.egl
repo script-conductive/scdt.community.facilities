@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+body {
+  padding: 10px;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  color:#000;
+  background-color: #fff;
+  color: #121212;
+  letter-spacing: 1px;
+}
+.journey-title {
+  color: gray;
+  margin: 0;
+}
+.menu-title{
+  margin: 0;
+}
+.persona-title {
+  color: gray;
+  margin: 0;
+}
+.stage-title {
+ color: gray;
+}
+.touchpoint-title {
+ color: gray;
+}
+.feature-title {
+ color: gray;
+}
+a {
+  color: #3e9e3e;
+  text-decoration:none;
+}
+a:visited {
+  color: #3e9e3e;
+}
+ul.no-bullets {
+  list-style-type: none;
+  padding: 0px; 
+  margin: 0px; 
+}
+.fixed  {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+.review {
+  margin-top: 30px;
+  border: 1px solid gray;
+  height: 300px;
+  padding: 10px;
+}
+.journey-table{
+  width: 100%;
+}
+.poweredby {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+.poweredby small {
+  color: gray;
+  width: 100%;
+  margin: 0px;
+}
+.poweredby img {
+  width: 30px;;
+}
+.metric table {
+  width: auto;
+  table-layout: none;
+}
+button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #121212;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3), 
+    0px -2px 2px rgba(255,255,255,0.3);
+  text-decoration: underline;
+  cursor: pointer
+}
+th.rotate {
+  /* Something you can count on */
+  height: 240px;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform: 
+    translate(25px, 51px)
+    rotate(90deg);
+  width: 30px;
+  margin-left: -40px;
+  padding: 40px;
+}
+th.rotate > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 0px 0px;
+}

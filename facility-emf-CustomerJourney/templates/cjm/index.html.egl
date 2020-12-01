@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+  <head>
+    <title>Customer Journeys</title>
+  </head>
+
+  <frameset cols="18%,*" noresize framespacing=0 frameborder=no border=0 >
+    <frame src="menu.html">
+    <frame name="journey" src="jn_[%=p.journeys.first.name%].html">
+  </frameset>
+
+  <noframes>
+    <body>
+      <p>HTML frameset tag is not available for your browser</p>
+    </body>
+  </noframes>
+
+</html>

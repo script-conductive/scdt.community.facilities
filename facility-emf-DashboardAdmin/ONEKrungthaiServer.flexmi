@@ -2,10 +2,10 @@
 <?nsuri http://DashboardAdmin?>
 
 <project 
-  name="Example1"  
-  author="UndefinedAuthor"
-  copyrights="UndefinedCopyrights"
-  packageName="javacode.example1"
+  name="ONEKrungthaiServer"  
+  author="Vorachet Jaroensawas"
+  copyrights="Vorachet Jaroensawas"
+  packageName="com.scriptconductive"  
   > 
 
   <schema name="Customer" collectionName="customer" containsImage="true" containsRichContent="true">
@@ -13,7 +13,7 @@
     <attr name="active" type="Boolean" index="true"/>
     <attr name="registeredOn" type="Date" index="true"/>
   </schema>
-  
+
   <schema name="Product" collectionName="product">
     <attr name="name" type="String" index="true" unique="true" required="true"/>
     <attr name="description" type="String"/>

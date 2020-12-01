@@ -1,0 +1,42 @@
+@namespace(uri="cjm", prefix="")
+package cjm;
+
+abstract class Named {
+  attr String name;
+  attr String label;
+}
+
+class Project extends Named {
+  val Journey[*] journeys;
+  val Touchpoint[*] touchpoints;
+  val Persona[*] personas;
+}
+
+class Journey extends Named {
+  ref Persona[1] persona;
+  val Stage[1..*] stages;
+}
+
+class Touchpoint extends Named {
+  val Feature[*] features;
+}
+
+class Feature extends Named {
+}
+
+class Persona extends Named {
+  attr Integer minAge;
+  attr Integer maxAge;
+}
+
+class Stage {
+  attr String label;
+  val Step[*] steps;
+}
+
+class Step {
+  attr String label;
+  attr String[*] valueExps;
+  attr String[*] devalueExps;
+  ref Feature[*] features;
+}

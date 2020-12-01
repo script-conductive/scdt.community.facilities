@@ -1,0 +1,42 @@
+pre {
+	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
+	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
+	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";	
+	var templateFolder = "./templates/cjm";
+	var targetFolder = ARTIFACT_DIR;
+}
+
+rule Index
+  transform p : Project { 
+  guard: p.name <> null and p.name <> "" and p.journeys.size > 0
+  template : templateFolder + "/index.html.egl"  
+  target : targetFolder + "/" + p.name + "/index.html"
+}
+
+rule Style
+  transform p : Project { 
+  guard: p.name <> null and p.name <> "" and p.journeys.size > 0
+  template : templateFolder + "/style.css.egl"  
+  target : targetFolder + "/" + p.name + "/style.css"
+}
+
+rule Journey
+  transform j : Journey { 
+  guard: j.label <> null and j.label <> "" and j.persona <> null
+  template : templateFolder + "/map.html.egl"  
+  target : targetFolder + "/" + j.eContainer.name + "/jn_" + j.name + ".html"
+}
+
+rule Menu
+  transform p : Project { 
+  guard: p.name <> null and p.name <> "" and p.journeys.size > 0
+  template : templateFolder + "/menu.html.egl"  
+  target : targetFolder + "/" + p.name + "/menu.html"
+}
+
+rule Touchpoint
+  transform t : Touchpoint { 
+  guard: t.name <> null and t.name <> ""
+  template : templateFolder + "/touchpoint.html.egl"  
+  target : targetFolder + "/" + t.eContainer.name + "/tp_" + t.name + ".html"
+}

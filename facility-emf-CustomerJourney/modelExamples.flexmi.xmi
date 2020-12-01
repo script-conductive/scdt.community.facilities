@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="cjm" xmi:id="_yRLYwDODEeu75M4Ulv5Jlg" name="ModelExamples">
+  <journeys xmi:id="_yRLYwTODEeu75M4Ulv5Jlg" name="j1" label="Cinema Customer" persona="_yRLY5TODEeu75M4Ulv5Jlg">
+    <stages xmi:id="_yRLYwjODEeu75M4Ulv5Jlg" label="Decide">
+      <steps xmi:id="_yRLYwzODEeu75M4Ulv5Jlg" label="Looks up movies" features="_yRLY3TODEeu75M4Ulv5Jlg"/>
+      <steps xmi:id="_yRLYxDODEeu75M4Ulv5Jlg" label="Decides which movies to see and which theater to go to" features="_yRLY3TODEeu75M4Ulv5Jlg"/>
+      <steps xmi:id="_yRLYxTODEeu75M4Ulv5Jlg" label="Buys ticket online" features="_yRLY3TODEeu75M4Ulv5Jlg"/>
+    </stages>
+    <stages xmi:id="_yRLYxjODEeu75M4Ulv5Jlg" label="Travel">
+      <steps xmi:id="_yRLYxzODEeu75M4Ulv5Jlg" label="Drives to movie theater" features="_yRLY3zODEeu75M4Ulv5Jlg"/>
+    </stages>
+    <stages xmi:id="_yRLYyDODEeu75M4Ulv5Jlg" label="Experience">
+      <steps xmi:id="_yRLYyTODEeu75M4Ulv5Jlg" label="Stands in line and buys popcorn" features="_yRLY4TODEeu75M4Ulv5Jlg">
+        <valueExps>Friendly staff</valueExps>
+      </steps>
+      <steps xmi:id="_yRLYyjODEeu75M4Ulv5Jlg" label="Finds seat" features="_yRLY3jODEeu75M4Ulv5Jlg">
+        <valueExps>Good seat</valueExps>
+      </steps>
+      <steps xmi:id="_yRLYyzODEeu75M4Ulv5Jlg" label="Watches movie" features="_yRLY3TODEeu75M4Ulv5Jlg">
+        <valueExps>great movie</valueExps>
+      </steps>
+    </stages>
+    <stages xmi:id="_yRLYzDODEeu75M4Ulv5Jlg" label="Return">
+      <steps xmi:id="_yRLYzTODEeu75M4Ulv5Jlg" label="Exits theater"/>
+      <steps xmi:id="_yRLYzjODEeu75M4Ulv5Jlg" label="Drives home"/>
+    </stages>
+  </journeys>
+  <journeys xmi:id="_yRLYzzODEeu75M4Ulv5Jlg" name="j2" label="Coffee Shop" persona="_yRLY5jODEeu75M4Ulv5Jlg">
+    <stages xmi:id="_yRLY0DODEeu75M4Ulv5Jlg" label="Enter">
+      <steps xmi:id="_yRLY0TODEeu75M4Ulv5Jlg" label="WalkIn" features="_yRLY5DODEeu75M4Ulv5Jlg">
+        <valueExps>Aroma</valueExps>
+        <valueExps>Ambience</valueExps>
+        <devalueExps>Loud</devalueExps>
+        <devalueExps>Cold</devalueExps>
+      </steps>
+    </stages>
+    <stages xmi:id="_yRLY0jODEeu75M4Ulv5Jlg" label="Engage">
+      <steps xmi:id="_yRLY0zODEeu75M4Ulv5Jlg" label="Line"/>
+      <steps xmi:id="_yRLY1DODEeu75M4Ulv5Jlg" label="Order">
+        <devalueExps>Fake greeting</devalueExps>
+        <devalueExps>Impolite</devalueExps>
+      </steps>
+      <steps xmi:id="_yRLY1TODEeu75M4Ulv5Jlg" label="Pay"/>
+      <steps xmi:id="_yRLY1jODEeu75M4Ulv5Jlg" label="Sit"/>
+      <steps xmi:id="_yRLY1zODEeu75M4Ulv5Jlg" label="Drink"/>
+      <steps xmi:id="_yRLY2DODEeu75M4Ulv5Jlg" label="Work"/>
+    </stages>
+    <stages xmi:id="_yRLY2TODEeu75M4Ulv5Jlg" label="Exit">
+      <steps xmi:id="_yRLY2jODEeu75M4Ulv5Jlg" label="Pack up"/>
+      <steps xmi:id="_yRLY2zODEeu75M4Ulv5Jlg" label="Leave"/>
+    </stages>
+  </journeys>
+  <touchpoints xmi:id="_yRLY3DODEeu75M4Ulv5Jlg" name="tp1" label="Mobile App">
+    <features xmi:id="_yRLY3TODEeu75M4Ulv5Jlg" name="tp1.f1" label="Movie Tickets Online Booking And Showtimes"/>
+    <features xmi:id="_yRLY3jODEeu75M4Ulv5Jlg" name="tp1.f2" label="Seat Selection"/>
+    <features xmi:id="_yRLY3zODEeu75M4Ulv5Jlg" name="tp1.f3" label="Location Service"/>
+  </touchpoints>
+  <touchpoints xmi:id="_yRLY4DODEeu75M4Ulv5Jlg" name="tp2" label="Movie Theater">
+    <features xmi:id="_yRLY4TODEeu75M4Ulv5Jlg" name="tp2.f1" label="Staff regular training"/>
+    <features xmi:id="_yRLY4jODEeu75M4Ulv5Jlg" name="tp2.f2" label="Environmental cleaning SOPs"/>
+  </touchpoints>
+  <touchpoints xmi:id="_yRLY4zODEeu75M4Ulv5Jlg" name="tp3" label="Coffee Shop">
+    <features xmi:id="_yRLY5DODEeu75M4Ulv5Jlg" name="tp3.f1" label="Coffee shop environment design"/>
+  </touchpoints>
+  <personas xmi:id="_yRLY5TODEeu75M4Ulv5Jlg" name="p1" label="Moviegoer" minAge="15" maxAge="60"/>
+  <personas xmi:id="_yRLY5jODEeu75M4Ulv5Jlg" name="p2" label="Coffeeholic" minAge="15" maxAge="60"/>
+</Project>

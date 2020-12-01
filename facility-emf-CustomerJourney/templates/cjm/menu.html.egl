@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<h3 class="menu-title">Personas ([%=Persona.all.size%])</h3>
+<ul class="no-bullets">
+[% for(p in Persona.all) { 
+var myJourneyes = Journey.allInstances().select(o|o.persona = p);
+%]
+<li>
+<b>👤[%=p.label%] </b>
+<ul class="no-bullets">
+[% for(j in myJourneyes) { %]
+<li>- <a target="journey" href="jn_[%=j.name%].html">[%=j.label%]</a></li>
+[% } %]
+</ul>
+</li>
+[% } %]
+</ul>
+<hr>
+<h3 class="menu-title">Touchpoints ([%=Touchpoint.all.size%])</h3>
+<ul class="no-bullets">
+[% for(t in Touchpoint.all) { %]
+<li>- 👋 <a target="journey" href="tp_[%=t.name%].html">[%=t.label%]</a></li>
+[% } %]
+</ul>
+
+</body>
+</html>
+
+[%
+function Touchpoint getParticipatedJourneys() : Set {
+  var journeys =new Set();
+  for(f in self.features) {
+    for(s in f.satisfies) {
+      journeys.add(s.eContainer.eContainer);
+    }
+  }
+  return journeys;
+}
+%]

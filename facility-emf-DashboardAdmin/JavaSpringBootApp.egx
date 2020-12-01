@@ -1,7 +1,7 @@
 pre {
 	var RUNTIME_ID = Native("java.lang.System").getProperty("RUNTIME_ID");
 	var ARTIFACT_DIR = Native("java.lang.System").getProperty(RUNTIME_ID + "_ARTIFACT_DIR");
-	ARTIFACT_DIR = "/Users/vorachet/Desktop";
+	ARTIFACT_DIR = "/Users/vorachet/playground";
 	if (ARTIFACT_DIR == null) ARTIFACT_DIR = "./artifacts";
 }
 
