@@ -23,7 +23,7 @@ Note that the required directory on the SCDT Infrastructure Server is ```~/scdt.
 
 [EMF-WebDocumentation](facility-emf-WebDocumentation)
 
-[EMF-CustomerJourney](facility-eml-CustomerJourney)
+[EMF-CustomerJourney](facility-emf-CustomerJourney)
 
 [UML25-GenericMetrics](facility-uml-GenericMetrics)
 
